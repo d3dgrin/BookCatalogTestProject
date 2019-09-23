@@ -15,7 +15,8 @@ namespace BookCatalogTestProject.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            int[] mas = new int[2];
+            mas[6] = 4;
 
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using BookCatalogTestProject.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace BookCatalogTestProject
@@ -7,7 +8,8 @@ namespace BookCatalogTestProject
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleAllErrorAttribute());
         }
     }
 }
