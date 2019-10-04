@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Book]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Title] VARCHAR(128) NOT NULL,
+	[PublicationDate] DATE NOT NULL,
+	[Rating] TINYINT NOT NULL,
+	[PagesCount] INT NOT NULL
+)
