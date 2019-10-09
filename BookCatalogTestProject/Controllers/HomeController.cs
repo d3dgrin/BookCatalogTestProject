@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookCatalogTestProject.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,17 @@ namespace BookCatalogTestProject.Controllers
 {
     public class HomeController : Controller
     {
+        private IBookRepository bookRepository;
+
+        public HomeController(IBookRepository bookRepository)
+        {
+            this.bookRepository = bookRepository;
+        }
+
         public ActionResult Index()
         {
+            var result = bookRepository.Get();
+
             return View();
         }
 

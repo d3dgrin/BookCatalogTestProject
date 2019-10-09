@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B56279CD-B54E-4935-8F63-8317AF3F54CD}</ProjectGuid>
+    <ProjectGuid>{88656D11-1956-4693-9D21-0BB1E9B6AD2B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookCatalogTestProject.Data.Entity</RootNamespace>
-    <AssemblyName>BookCatalogTestProject.Data.Entity</AssemblyName>
+    <RootNamespace>BookCatalogTestProject.Interfaces</RootNamespace>
+    <AssemblyName>BookCatalogTestProject.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookEM.cs" />
+    <Compile Include="IBookRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookCatalogTestProject.Data.Entity\BookCatalogTestProject.Data.Entity.csproj">
+      <Project>{B56279CD-B54E-4935-8F63-8317AF3F54CD}</Project>
+      <Name>BookCatalogTestProject.Data.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
