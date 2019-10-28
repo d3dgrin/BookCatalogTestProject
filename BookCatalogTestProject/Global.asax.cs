@@ -1,5 +1,4 @@
-﻿using BookCatalogTestProject.App_Start;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +12,6 @@ namespace BookCatalogTestProject
     {
         protected void Application_Start()
         {
-            UnityConfig.RegisterComponents();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

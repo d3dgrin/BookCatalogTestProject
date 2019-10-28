@@ -1,5 +1,4 @@
-﻿using BookCatalogTestProject.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,25 +8,18 @@ namespace BookCatalogTestProject.Controllers
 {
     public class HomeController : Controller
     {
-        private IBookRepository bookRepository;
 
-        public HomeController(IBookRepository bookRepository)
+        public HomeController()
         {
-            this.bookRepository = bookRepository;
         }
 
         public ActionResult Index()
         {
-            var result = bookRepository.Get();
-
             return View();
         }
 
         public ActionResult About()
         {
-            int[] mas = new int[2];
-            mas[6] = 4;
-
             return View();
         }
 
@@ -35,11 +27,6 @@ namespace BookCatalogTestProject.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        public ActionResult Test()
-        {
             return View();
         }
     }
