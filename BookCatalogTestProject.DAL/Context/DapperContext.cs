@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace BookCatalogTestProject.DAL.Context
 {
-    public class DapperContext
+    public class DapperContext : IDisposable
     {
+        public DapperContext(string connectionString)
+        {
+        }
 
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 }
