@@ -15,7 +15,7 @@ namespace BookCatalogTestProject.DAL.Interfaces
 
         TEntity Get(Key id);
 
-        Key Create(TEntity entity);
+        long Create(TEntity entity);
 
         void Update(TEntity entity);
 
