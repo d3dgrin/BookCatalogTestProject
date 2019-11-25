@@ -109,6 +109,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookCatalogTestProject.DAL\BookCatalogTestProject.DAL.csproj">
+      <Project>{CE023AC7-EBE8-4350-B030-57C723C5D99A}</Project>
+      <Name>BookCatalogTestProject.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookCatalogTestProject.Infrastructure\BookCatalogTestProject.Infrastructure.csproj">
       <Project>{09E76CEF-3B1F-41A8-89C5-C259A2A9C659}</Project>
       <Name>BookCatalogTestProject.Infrastructure</Name>

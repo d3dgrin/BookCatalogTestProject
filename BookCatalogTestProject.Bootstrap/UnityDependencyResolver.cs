@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookCatalogTestProject.DAL.Repositories;
+using BookCatalogTestProject.Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,8 @@ namespace BookCatalogTestProject.Bootstrap
         public static void RegisterTypes(IUnityContainer _container)
         {
             container = _container;
+
+            container.RegisterType<IBookRepository, BookRepository>();
         }
     }
 }

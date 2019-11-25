@@ -41,9 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IBookRepository.cs" />
+    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Data\IRepository.cs" />
     <Compile Include="IRequestContext.cs" />
     <Compile Include="IServiceProviderFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookCatalogTestProject.DAL.Entity\BookCatalogTestProject.DAL.Entity.csproj">
+      <Project>{4CF5F684-A23B-4049-871D-36ACB249DB0A}</Project>
+      <Name>BookCatalogTestProject.DAL.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

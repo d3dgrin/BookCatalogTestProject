@@ -1,4 +1,4 @@
-﻿using BookCatalogTestProject.DAL.Interfaces;
+﻿using BookCatalogTestProject.Infrastructure.Data;
 using Dommel;
 using System;
 using System.Collections.Generic;
@@ -13,20 +13,20 @@ namespace BookCatalogTestProject.DAL.Repositories
     public class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : class
     {
-        public string DbConnection
+        public IDataContext CurrentContext
         {
             get;
             private set;
         }
 
-        protected RepositoryBase(string dbConnection)
+        protected RepositoryBase(IDataContext context)
         {
-            this.DbConnection = dbConnection;
+            this.CurrentContext = context;
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            using (IDbConnection db = new SqlConnection(this.DbConnection))
+            using (IDbConnection db = new SqlConnection(this.CurrentContext.DbConnection))
             {
                 return db.GetAll<TEntity>();
             }
@@ -34,7 +34,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public TEntity Get(TKey id)
         {
-            using (IDbConnection db = new SqlConnection(this.DbConnection))
+            using (IDbConnection db = new SqlConnection(this.CurrentContext.DbConnection))
             {
                 return db.Get<TEntity>(id);
             }
@@ -42,7 +42,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public long Create(TEntity entity)
         {
-            using (IDbConnection db = new SqlConnection(this.DbConnection))
+            using (IDbConnection db = new SqlConnection(this.CurrentContext.DbConnection))
             {
                 var result = db.Insert<TEntity>(entity);
                 return result != null ? long.Parse(result.ToString()) : default(long);
@@ -51,7 +51,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void Update(TEntity entity)
         {
-            using (IDbConnection db = new SqlConnection(this.DbConnection))
+            using (IDbConnection db = new SqlConnection(this.CurrentContext.DbConnection))
             {
                 db.Update<TEntity>(entity);
             }
@@ -59,7 +59,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void Delete(TKey id)
         {
-            using (IDbConnection db = new SqlConnection(this.DbConnection))
+            using (IDbConnection db = new SqlConnection(this.CurrentContext.DbConnection))
             {
                 var entity = db.Get<TEntity>(id);
                 db.Delete<TEntity>(entity);

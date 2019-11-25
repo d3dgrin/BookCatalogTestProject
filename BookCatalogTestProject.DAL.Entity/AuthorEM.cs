@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCatalogTestProject.DAL.Entities
+namespace BookCatalogTestProject.DAL.Entity
 {
     public class AuthorEM
     {

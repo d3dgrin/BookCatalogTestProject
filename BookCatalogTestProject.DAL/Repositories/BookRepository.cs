@@ -1,5 +1,5 @@
-﻿using BookCatalogTestProject.DAL.Entities;
-using BookCatalogTestProject.DAL.Interfaces;
+﻿using BookCatalogTestProject.DAL.Entity;
+using BookCatalogTestProject.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 {
     public class BookRepository : RepositoryBase<BookEM, int>, IBookRepository
     {
-        public BookRepository(string connection) : base(connection)
+        public BookRepository(IDataContext context) : base(context)
         {
 
         }

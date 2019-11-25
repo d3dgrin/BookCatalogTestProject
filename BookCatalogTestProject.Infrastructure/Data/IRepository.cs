@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCatalogTestProject.DAL.Interfaces
+namespace BookCatalogTestProject.Infrastructure.Data
 {
     public interface IRepository<TEntity, Key> : IDisposable
-        where TEntity: class
+        where TEntity : class
     {
-        string DbConnection { get; }
+        IDataContext CurrentContext { get; }
 
         IEnumerable<TEntity> GetAll();
 
