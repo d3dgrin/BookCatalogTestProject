@@ -8,6 +8,6 @@ namespace BookCatalogTestProject.Infrastructure
 {
     public interface IServiceProviderFactory : IServiceProvider
     {
-
+        TService GetService<TService>(params object[] constructParams);
     }
 }

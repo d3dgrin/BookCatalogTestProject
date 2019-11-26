@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookCatalogTestProject.Context;
+using BookCatalogTestProject.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -9,12 +11,47 @@ namespace BookCatalogTestProject.Controllers
 {
     public class BaseController : Controller
     {
-        private const string CONNECTION_KEY = "DefaultConnection";
+        private readonly object _mutex = new object();
+        private IServiceProviderFactory _modelFactory = default(IServiceProviderFactory);
+        private DefaultContext _context = default(DefaultContext);
+
         public string ConnectionString { get; }
 
         public BaseController()
         {
-            this.ConnectionString = ConfigurationManager.ConnectionStrings[CONNECTION_KEY].ToString();
+            
+        }
+
+        public IRequestContext RequestContext
+        {
+            get
+            {
+                lock (this._mutex)
+                {
+                    if (this._context == null)
+                    {
+                        this._context = new DefaultContext();
+                    }
+                }
+
+                return this._context;
+            }
+        }
+
+        protected IServiceProviderFactory Factory
+        {
+            get
+            {
+                lock (this._mutex)
+                {
+                    if (this._modelFactory == null)
+                    {
+                        this._modelFactory = this.RequestContext.Factory;
+                    }
+
+                    return this._modelFactory;
+                }
+            }
         }
     }
 }
