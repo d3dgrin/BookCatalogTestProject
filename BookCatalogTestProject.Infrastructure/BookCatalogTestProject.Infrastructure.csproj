@@ -41,20 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BusinessContextBase.cs" />
+    <Compile Include="Business\IBookDM.cs" />
+    <Compile Include="Business\IBusinessContext.cs" />
     <Compile Include="Data\IBookRepository.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="IEntityService.cs" />
     <Compile Include="IRequestContext.cs" />
     <Compile Include="IServiceProviderFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BookCatalogTestProject.DAL.Entity\BookCatalogTestProject.DAL.Entity.csproj">
       <Project>{4CF5F684-A23B-4049-871D-36ACB249DB0A}</Project>
       <Name>BookCatalogTestProject.DAL.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookCatalogTestProject.ViewModel\BookCatalogTestProject.ViewModel.csproj">
+      <Project>{6CDA2233-A4C1-43E4-A7CE-7C5FF9134A7B}</Project>
+      <Name>BookCatalogTestProject.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

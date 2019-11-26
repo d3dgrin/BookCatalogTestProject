@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCatalogTestProject.Infrastructure
+namespace BookCatalogTestProject.Infrastructure.Business
 {
-    public interface IRequestContext : IDisposable
+    public interface IBusinessContext : IDisposable
     {
         IDataContext DataContext { get; }
+
         IServiceProviderFactory Factory { get; }
     }
 }

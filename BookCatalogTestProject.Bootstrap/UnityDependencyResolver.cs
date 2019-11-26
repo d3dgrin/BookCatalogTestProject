@@ -1,11 +1,15 @@
-﻿using BookCatalogTestProject.DAL.Repositories;
+﻿using BookCatalogTestProject.BLL;
+using BookCatalogTestProject.DAL.Context;
+using BookCatalogTestProject.DAL.Repositories;
+using BookCatalogTestProject.Infrastructure;
+using BookCatalogTestProject.Infrastructure.Business;
 using BookCatalogTestProject.Infrastructure.Data;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unity;
 
 namespace BookCatalogTestProject.Bootstrap
 {
@@ -17,7 +21,12 @@ namespace BookCatalogTestProject.Bootstrap
         {
             container = _container;
 
+            container.RegisterType<IDataContext, DapperContext>();
+            container.RegisterInstance<IEntityService>(new ValueConverter());
+
             container.RegisterType<IBookRepository, BookRepository>();
+
+            container.RegisterType<IBookDM, BookDM>();
         }
     }
 }

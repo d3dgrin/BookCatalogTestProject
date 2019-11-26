@@ -1,4 +1,5 @@
-﻿using BookCatalogTestProject.Infrastructure;
+﻿using BookCatalogTestProject.Bootstrap;
+using BookCatalogTestProject.Infrastructure;
 using BookCatalogTestProject.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,13 @@ namespace BookCatalogTestProject.Context
         public DefaultContext()
         {
             var connectionString = ConfigurationManager.ConnectionStrings[CONNECTION_KEY].ToString();
+            this.Factory = UnitySetup.CreateFactory(this);
             this.DataContext = this.Factory.GetService<IDataContext>(connectionString);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

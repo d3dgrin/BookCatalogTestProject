@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookCatalogTestProject.Infrastructure.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,12 @@ namespace BookCatalogTestProject.Controllers
 
         public ActionResult About()
         {
-            return View();
+            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
+            {
+                var books = bookDm.GetBooks();
+
+                return View(books);
+            }
         }
 
         public ActionResult Contact()
