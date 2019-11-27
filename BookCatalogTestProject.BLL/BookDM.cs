@@ -27,5 +27,15 @@ namespace BookCatalogTestProject.BLL
                 return booksVM;
             }
         }
+
+        public BookVM GetBook(int id)
+        {
+            using (var repo = Factory.GetService<IBookRepository>(DataContext))
+            {
+                var bookEM = repo.GetBook(id);
+                var bookVM = entService.ConvertTo<BookEM, BookVM>(bookEM);
+                return bookVM;
+            }
+        }
     }
 }

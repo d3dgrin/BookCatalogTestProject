@@ -34,5 +34,25 @@ namespace BookCatalogTestProject.DAL.Repositories
                 return booksEM;
             }
         }
+
+        public BookEM GetBook(int id)
+        {
+            string query = @"SELECT [Id]
+                                  ,[Title]
+                                  ,[PublicationDate]
+                                  ,[Rating]
+                                  ,[PagesCount]
+                              FROM [Book]
+                                WHERE [Id] = @id";
+            var sqlParams = new DynamicParameters();
+            sqlParams.Add("@id", id, DbType.Int32);
+
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                var bookEM = db.Query<BookEM>(query, sqlParams).FirstOrDefault();
+
+                return bookEM;
+            }
+        }
     }
 }

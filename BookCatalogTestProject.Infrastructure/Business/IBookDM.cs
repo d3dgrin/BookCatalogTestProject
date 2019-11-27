@@ -10,5 +10,6 @@ namespace BookCatalogTestProject.Infrastructure.Business
     public interface IBookDM : IDisposable
     {
         IEnumerable<BookVM> GetBooks();
+        BookVM GetBook(int id);
     }
 }

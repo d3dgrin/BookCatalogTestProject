@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookCatalogTestProject.BLL;
+using BookCatalogTestProject.DAL.Entity;
 using BookCatalogTestProject.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace BookCatalogTestProject.Bootstrap
         {
             Mapper.Initialize((mapper) =>
             {
-                mapper.CreateMap<BookVM, BookDM>().ReverseMap();
+                mapper.CreateMap<BookVM, BookEM>().ReverseMap();
             });
         }
     }
