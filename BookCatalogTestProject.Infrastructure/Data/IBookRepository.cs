@@ -9,6 +9,6 @@ namespace BookCatalogTestProject.Infrastructure.Data
 {
     public interface IBookRepository : IRepository<BookEM, int>
     {
-
+        IEnumerable<BookEM> GetBooks();
     }
 }

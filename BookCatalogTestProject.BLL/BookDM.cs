@@ -22,7 +22,7 @@ namespace BookCatalogTestProject.BLL
         {
             using (var repo = Factory.GetService<IBookRepository>(DataContext))
             {
-                var booksEM = repo.GetAll();
+                var booksEM = repo.GetBooks();
                 var booksVM = entService.ConvertTo<IEnumerable<BookEM>, IEnumerable<BookVM>>(booksEM);
                 return booksVM;
             }

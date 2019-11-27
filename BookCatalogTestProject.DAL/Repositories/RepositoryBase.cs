@@ -1,4 +1,5 @@
 ﻿using BookCatalogTestProject.Infrastructure.Data;
+using BookCatalogTestProject.DAL.Entity;
 using Dommel;
 using System;
 using System.Collections.Generic;

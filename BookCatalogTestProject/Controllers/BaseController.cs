@@ -15,8 +15,6 @@ namespace BookCatalogTestProject.Controllers
         private IServiceProviderFactory _modelFactory = default(IServiceProviderFactory);
         private DefaultContext _context = default(DefaultContext);
 
-        public string ConnectionString { get; }
-
         public BaseController()
         {
             
