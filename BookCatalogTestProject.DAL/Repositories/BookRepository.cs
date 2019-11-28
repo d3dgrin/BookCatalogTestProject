@@ -1,4 +1,7 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
+using BookCatalogTestProject.DAL.Entity.Book;
+using BookCatalogTestProject.DAL.Entity.Enums;
+using BookCatalogTestProject.DAL.Extensions;
 using BookCatalogTestProject.Infrastructure.Data;
 using Dapper;
 using System;
@@ -52,6 +55,32 @@ namespace BookCatalogTestProject.DAL.Repositories
                 var bookEM = db.Query<BookEM>(query, sqlParams).FirstOrDefault();
 
                 return bookEM;
+            }
+        }
+
+        public void CreateBook(CreateBookEM model)
+        {
+            string spName = "USPCreateBook";
+
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("@Title", model.Title, DbType.String);
+            sqlParams.Add("@PublicationDate", model.PublicationDate, DbType.DateTime);
+            sqlParams.Add("@Rating", model.Rating, DbType.Int32);
+            sqlParams.Add("@PagesCount", model.PagesCount, DbType.Int32);
+            sqlParams.Add("@AuthorIds", model.AuthorIds.AsDataTableParam().AsTableValuedParameter(DataBaseCustomType.IntArrayType));
+
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
+            }
+        }
+
+        public void DeleteBook(int id)
+        {
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                
             }
         }
     }

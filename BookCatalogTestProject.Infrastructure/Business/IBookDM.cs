@@ -1,4 +1,5 @@
 ﻿using BookCatalogTestProject.ViewModel;
+using BookCatalogTestProject.ViewModel.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace BookCatalogTestProject.Infrastructure.Business
     {
         IEnumerable<BookVM> GetBooks();
         BookVM GetBook(int id);
+        void CreateBook(CreateBookVM model);
+        void DeleteBook(int id);
     }
 }

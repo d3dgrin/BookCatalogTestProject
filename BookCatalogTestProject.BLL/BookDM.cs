@@ -1,8 +1,10 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
+using BookCatalogTestProject.DAL.Entity.Book;
 using BookCatalogTestProject.Infrastructure;
 using BookCatalogTestProject.Infrastructure.Business;
 using BookCatalogTestProject.Infrastructure.Data;
 using BookCatalogTestProject.ViewModel;
+using BookCatalogTestProject.ViewModel.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,23 @@ namespace BookCatalogTestProject.BLL
                 var bookEM = repo.GetBook(id);
                 var bookVM = entService.ConvertTo<BookEM, BookVM>(bookEM);
                 return bookVM;
+            }
+        }
+
+        public void CreateBook(CreateBookVM model)
+        {
+            using (var repo = Factory.GetService<IBookRepository>(DataContext))
+            {
+                var createBookEM = entService.ConvertTo<CreateBookVM, CreateBookEM>(model);
+                repo.CreateBook(createBookEM);
+            }
+        }
+
+        public void DeleteBook(int id)
+        {
+            using (var repo = Factory.GetService<IBookRepository>(DataContext))
+            {
+                repo.DeleteBook(id);
             }
         }
     }

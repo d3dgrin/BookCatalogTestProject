@@ -17,13 +17,6 @@ namespace BookCatalogTestProject.Controllers
 
         public ActionResult About()
         {
-            //using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
-            //{
-            //    var books = bookDm.GetBooks();
-
-            //    return View(books);
-            //}
-
             return View();
         }
 
@@ -36,14 +29,12 @@ namespace BookCatalogTestProject.Controllers
 
         public JsonResult GetBooks()
         {
-            var books = new List<BookVM>()
+            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
             {
-                new BookVM() {Id = 1, Title = "Title 1", Rating = 8},
-                new BookVM() {Id = 2, Title = "Title 2", Rating = 5},
-                new BookVM() {Id = 3, Title = "Title 3", Rating = 9},
-            };
+                var books = bookDm.GetBooks();
 
-            return Json(books, JsonRequestBehavior.AllowGet);
+                return Json(new { data = books }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

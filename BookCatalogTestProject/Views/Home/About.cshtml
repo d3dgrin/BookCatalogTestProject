@@ -13,11 +13,11 @@
             <thead>
                 <tr><th>ID</th><th>Имя</th><th>Помещение</th><th></th></tr>
             </thead>
-            <tbody data-bind="foreach: model.books">
+            <tbody>
                 <tr>
-                    <td data-bind="text: Id"></td>
-                    <td data-bind="text: Title"></td>
-                    <td data-bind="text: Rating"></td>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: personName"></td>
+                    <td data-bind="text: personAge"></td>
                     <td>
                         <button class="btn btn-xs btn-primary">
                             Удалить
@@ -25,13 +25,30 @@
                     </td>
                 </tr>
             </tbody>
+            @*<tbody data-bind="foreach: model.books">
+            <tr>
+                <td data-bind="text: Id"></td>
+                <td data-bind="text: Title"></td>
+                <td data-bind="text: Rating"></td>
+                <td>
+                    <button class="btn btn-xs btn-primary">
+                        Удалить
+                    </button>
+                </td>
+            </tr>
+        </tbody>*@
         </table>
     </div>
 </div>
 
 <script>
-    var model = {
-            books: ko.observableArray()
+    let model = {
+        books: ko.observableArray()
+    };
+    let myViewModel = {
+        id: ko.observable(1),
+        personName: ko.observable('Bob'),
+        personAge: ko.observable(123)
     };
 
     function sendAjaxRequest(httpMethod, callback, url) {
@@ -52,6 +69,10 @@
 
     $(document).ready(function () {
         getAllItems();
-        ko.applyBindings(model);
+        ko.applyBindings(myViewModel);
+
+        setTimeout(function () {
+            myViewModel.personName("TEST");
+        }, 5000);
     });
 </script>

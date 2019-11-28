@@ -1,17 +1,54 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Scripts.Render("~/bundles/book");
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="row">
+    <div class="col-md-12">
+        <table id="bookDataTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>PublicationDate</th>
+                    <th>Rating</th>
+                    <th>PagesCount</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script>
+
+        $(function () {
+
+            var bookController = new BookController();
+            bookController.InitializeGrid();
+
+            //$("#testDataTable").DataTable({
+            //    "processing": true,
+            //    "ajax": {
+            //        "url": "/home/getbooks",
+            //        "type": "GET",
+            //        "datatype": "json"
+            //    },
+            //    "columns": [
+            //        { "data": "Id", "autoWidth": true },
+            //        { "data": "Title", "autoWidth": true },
+            //        { "data": "PublicationDate", "autoWidth": true },
+            //        { "data": "Rating", "autoWidth": true },
+            //        { "data": "PagesCount", "autoWidth": true }
+            //    ]
+            //});
+        });
+
+    </script>
+
+}

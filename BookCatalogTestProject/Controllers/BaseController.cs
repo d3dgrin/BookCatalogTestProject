@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,6 +51,17 @@ namespace BookCatalogTestProject.Controllers
                     return this._modelFactory;
                 }
             }
+        }
+
+        protected JsonResult Success(object model = null)
+        {
+            return new JsonResult()
+            {
+                ContentEncoding = Encoding.UTF8,
+                ContentType = "application/json",
+                Data = new { IsSuccess = true, Model = model },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }

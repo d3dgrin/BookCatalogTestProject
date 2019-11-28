@@ -1,4 +1,5 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
+using BookCatalogTestProject.DAL.Entity.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace BookCatalogTestProject.Infrastructure.Data
     {
         IEnumerable<BookEM> GetBooks();
         BookEM GetBook(int id);
+        void CreateBook(CreateBookEM model);
+        void DeleteBook(int id);
     }
 }
