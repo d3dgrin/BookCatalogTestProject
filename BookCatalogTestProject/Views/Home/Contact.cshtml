@@ -1,25 +1,18 @@
 ﻿@{
     ViewBag.Title = "Contact";
-    Scripts.Render("~/bundles/book");
 }
+
+@Scripts.Render("~/bundles/book");
+
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 
-<div class="row">
-    <div class="col-md-12">
-        <table id="bookDataTable" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>PublicationDate</th>
-                    <th>Rating</th>
-                    <th>PagesCount</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
+<span>Selected value: </span>
+<span data-bind="text: value"></span>
+
+<div style="width: 350px; margin-top: 20px;">
+    <select style="width: 100%;" data-bind="value: value, valueAllowUnset: true, options: data, optionsText: 'text', optionsValue: 'id', select2: { placeholder: 'Select an option...', allowClear: true }"></select>
 </div>
 
 
@@ -27,26 +20,35 @@
 
     <script>
 
+        ko.bindingHandlers.select2 = {
+            after: ["options", "value"],
+            init: function (el, valueAccessor, allBindingsAccessor, viewModel) {
+                $(el).select2(ko.unwrap(valueAccessor()));
+                ko.utils.domNodeDisposal.addDisposeCallback(el, function () {
+                    $(el).select2('destroy');
+                });
+            },
+            update: function (el, valueAccessor, allBindingsAccessor, viewModel) {
+                var allBindings = allBindingsAccessor();
+                var select2 = $(el).data("select2");
+                if ("value" in allBindings) {
+                    var newValue = "" + ko.unwrap(allBindings.value);
+                    if ((allBindings.select2.multiple || el.multiple) && newValue.constructor !== Array) {
+                        select2.val([newValue.split(",")]);
+                    }
+                    else {
+                        select2.val([newValue]);
+                    }
+                }
+            }
+        };
+
         $(function () {
 
-            var bookController = new BookController();
-            bookController.InitializeGrid();
+            var data = ko.observableArray([{ id: 1, text: "A" }, { id: 2, text: "B" }]);
+            var value = ko.observable();
+            ko.applyBindings({ data: data, value: value });
 
-            //$("#testDataTable").DataTable({
-            //    "processing": true,
-            //    "ajax": {
-            //        "url": "/home/getbooks",
-            //        "type": "GET",
-            //        "datatype": "json"
-            //    },
-            //    "columns": [
-            //        { "data": "Id", "autoWidth": true },
-            //        { "data": "Title", "autoWidth": true },
-            //        { "data": "PublicationDate", "autoWidth": true },
-            //        { "data": "Rating", "autoWidth": true },
-            //        { "data": "PagesCount", "autoWidth": true }
-            //    ]
-            //});
         });
 
     </script>

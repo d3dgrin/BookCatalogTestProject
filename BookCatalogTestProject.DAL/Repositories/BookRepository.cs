@@ -78,9 +78,14 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void DeleteBook(int id)
         {
+            string query = @"DELETE FROM [Book] WHERE [Id] = @id";
+
+            var sqlParams = new DynamicParameters();
+            sqlParams.Add("@id", id, DbType.Int32);
+
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                
+                db.Query(query, sqlParams);
             }
         }
     }
