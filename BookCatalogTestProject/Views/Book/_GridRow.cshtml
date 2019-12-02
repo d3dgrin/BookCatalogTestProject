@@ -1,0 +1,25 @@
+﻿<div id="book-grid-row-template" class="bc-hidden">
+    <table>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <div class="form-group form-md-line-input">
+                        <input class="form-control" disabled data-bind="value: Books()[{0}].Id">
+                    </div>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Title"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].PublicationDate"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Rating"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].PagesCount"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

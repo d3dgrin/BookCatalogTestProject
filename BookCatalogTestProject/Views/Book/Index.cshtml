@@ -3,23 +3,30 @@
     ViewBag.Title = "Book catalog";
 }
 
-<h2>Index</h2>
+
+@Scripts.Render("~/bundles/book")
+
+<h2>Books</h2>
 
 <div class="row">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-            </span>
-            <input type="text" class="form-control" placeholder="Search for...">
-        </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-            </span>
-        </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        @{Html.RenderPartial("_BookGrid");}
+    </div>
+</div>
+
+@{Html.RenderPartial("_GridRow");}
+
+
+<script>
+    $(function () {
+        var urls = {
+            GetBooksUrl: '@Url.Action("GetBooks", "Book")'
+        };
+
+        var bookBusiness = new BookBusiness(new BookService(urls));
+        var bookGridController = new BookGridController(bookBusiness);
+        var bookController = new BookController(bookBusiness, bookGridController);
+
+        bookGridController.Initialize();
+    })
+</script>

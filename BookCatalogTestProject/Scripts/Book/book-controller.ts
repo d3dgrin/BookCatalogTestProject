@@ -1,10 +1,18 @@
 ﻿declare var Datatable: any;
 
 class BookController {
-    private grid: any;
-    private gridSelector: string = "#bookDataTable";
 
-    public InitializeGrid(): void {
-        this.grid = new Datatable();
+    constructor(public business: BookBusiness, public gridController: BookGridController) {
+        this.gridController.DrawCallback = this.OnDrawCallback;
+    }
+
+    public OnDrawCallback = (data: any): void => {
+        this.business.Model.Books = this.MapToObservable(this.business.ConvertResponse(data));
+
+        ko.applyBindings(this.business.Model, $('#book_tbody')[0]);
+    }
+
+    private MapToObservable(books: BookModel[]): KnockoutObservableArray<BookModel> {
+        return ko.observableArray(books);
     }
 }
