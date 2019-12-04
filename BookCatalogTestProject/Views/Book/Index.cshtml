@@ -1,23 +1,37 @@
-﻿
+﻿@Scripts.Render("~/bundles/book")
 @{
     ViewBag.Title = "Book catalog";
 }
 
-
-@Scripts.Render("~/bundles/book")
-
 <h2>Books</h2>
 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        @{Html.RenderPartial("_BookGrid");}
-    </div>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Publication Date</th>
+                <th>Rating</th>
+                <th>Pages Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Books">
+            <tr>
+                <td data-bind="text: Id"></td>
+                <td data-bind="text: Title"></td>
+                <td data-bind="text: PublicationDate"></td>
+                <td data-bind="text: Rating"></td>
+                <td data-bind="text: PagesCount"></td>
+                <td>
+                    <button type="button" class="btn btn-success">Edit</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
-@{Html.RenderPartial("_GridRow");}
-
-<p><input id="authorMuliselect" /></p>
-
 
 <script>
     $(function () {
@@ -26,10 +40,7 @@
             GetBooksUrl: '@Url.Action("GetBooks", "Book")'
         };
 
-        var bookBusiness = new BookBusiness(new BookService(urls));
-        var bookGridController = new BookGridController(bookBusiness);
-        var bookController = new BookController(bookBusiness, bookGridController);
-
-        bookGridController.Initialize();
+        var bookController = new BookController(new BookBusiness(new BookService(urls)));
+        bookController.Initialize();
     })
 </script>

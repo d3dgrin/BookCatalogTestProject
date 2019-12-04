@@ -242,6 +242,7 @@
     <TypeScriptCompile Include="Scripts\Book\Model\book.d.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\books-model.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout.mapping\knockout.mapping.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\tests\jasmine.extensions.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\string.d.ts" />
