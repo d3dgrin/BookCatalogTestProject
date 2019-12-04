@@ -25,8 +25,10 @@ namespace BookCatalogTestProject.Bootstrap
             container.RegisterInstance<IEntityService>(new ValueConverter());
 
             container.RegisterType<IBookRepository, BookRepository>();
+            container.RegisterType<IAuthorRepository, AuthorRepository>();
 
             container.RegisterType<IBookDM, BookDM>();
+            container.RegisterType<IAuthorDM, AuthorDM>();
         }
     }
 }

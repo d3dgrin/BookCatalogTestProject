@@ -17,19 +17,19 @@ namespace BookCatalogTestProject.Controllers
 
         public JsonResult GetBooks()
         {
-            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
+            using (var domain = Factory.GetService<IBookDM>(RequestContext))
             {
-                var books = bookDm.GetBooks();
+                var result = domain.GetBooks();
 
-                return Success(books);
+                return Success(result);
             }
         }
 
         public JsonResult CreateBook(CreateBookVM model)
         {
-            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
+            using (var domain = Factory.GetService<IBookDM>(RequestContext))
             {
-                bookDm.CreateBook(model);
+                domain.CreateBook(model);
 
                 return Success();
             }
@@ -37,9 +37,9 @@ namespace BookCatalogTestProject.Controllers
 
         public JsonResult DeleteBook(int id)
         {
-            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
+            using (var domain = Factory.GetService<IBookDM>(RequestContext))
             {
-                bookDm.DeleteBook(id);
+                domain.DeleteBook(id);
 
                 return Success();
             }

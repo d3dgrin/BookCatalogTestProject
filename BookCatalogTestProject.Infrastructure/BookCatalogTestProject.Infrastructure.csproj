@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\BusinessContextBase.cs" />
+    <Compile Include="Business\IAuthorDM.cs" />
     <Compile Include="Business\IBookDM.cs" />
     <Compile Include="Business\IBusinessContext.cs" />
+    <Compile Include="Data\IAuthorRepository.cs" />
     <Compile Include="Data\IBookRepository.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\IRepository.cs" />

@@ -16,9 +16,12 @@
 
 @{Html.RenderPartial("_GridRow");}
 
+<p><input id="authorMuliselect" /></p>
+
 
 <script>
     $(function () {
+
         var urls = {
             GetBooksUrl: '@Url.Action("GetBooks", "Book")'
         };

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Authors</h2>
+
+<p><input id="auhtors-select2" multiple="multiple" /></p>
+
+<script>
+    $(function () {
+
+        $("#auhtors-select2").select2({
+            placeholder: "Search authors",
+            minimumInputLength: 1,
+            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                url: "/author/getauthors",
+                dataType: 'json',
+                quietMillis: 250,
+                data: function (term, page) {
+                    return {
+                        q: term, // search term
+                    };
+                },
+                results: function (data, page) { // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter the remote JSON data
+                    return { results: data.items };
+                },
+                cache: true
+            },
+            //initSelection: function(element, callback) {
+            //    // the input tag has a value attribute preloaded that points to a preselected repository's id
+            //    // this function resolves that id attribute to an object that select2 can render
+            //    // using its formatResult renderer - that way the repository name is shown preselected
+            //    var id = $(element).val();
+            //    if (id !== "") {
+            //        $.ajax("https://api.github.com/repositories/" + id, {
+            //            dataType: "json"
+            //        }).done(function(data) { callback(data); });
+            //    }
+            //}
+        });
+
+    })
+</script>
