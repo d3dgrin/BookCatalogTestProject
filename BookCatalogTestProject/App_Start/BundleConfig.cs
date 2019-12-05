@@ -9,7 +9,8 @@ namespace BookCatalogTestProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/bookcatalog").Include(
-                        "~/Scripts/polyfill.js"));
+                        "~/Scripts/polyfill.js",
+                        "~/Scripts/moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                         "~/Scripts/datatables.js"));

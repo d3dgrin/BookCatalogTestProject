@@ -3,15 +3,14 @@
 class BookController {
 
     constructor(public business: BookBusiness) {
-        this.business.delegate = this.ApplyBindings;
+        this.business.ApplyBindingsDelegate = this.ApplyBindings;
     }
 
     public Initialize(): void {
         this.business.InitBooks();
-        //this.ApplyBindings();
     }
 
-    private ApplyBindings(): void {
+    private ApplyBindings = () => {
         ko.applyBindings(this.business.Model);
     }
 

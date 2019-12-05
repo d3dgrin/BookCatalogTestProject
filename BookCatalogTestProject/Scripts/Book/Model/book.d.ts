@@ -1,7 +1,7 @@
 ﻿type Book = {
     Id: number,
     Title: string,
-    PublicationDate: Date,
+    PublicationDate: string,
     Rating: number,
     PagesCount: number
 }
