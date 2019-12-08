@@ -245,6 +245,8 @@
     <TypeScriptCompile Include="Scripts\Book\Model\book-url-model.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\book.d.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\books-model.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.dataTables\jquery.dataTables-1.9.4.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.dataTables\jquery.dataTables.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout.mapping\knockout.mapping.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />

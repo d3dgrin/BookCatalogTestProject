@@ -1,4 +1,4 @@
-﻿declare var DataTable: any;
+﻿//declare var DataTable: any;
 
 class BookGridController {
     private rowTemplate: string;
@@ -12,12 +12,13 @@ class BookGridController {
 
     public DrawCallback: (data: any) => void;
 
-    constructor(public business: BookBusiness) {
-    }
+    //constructor(public business: BookBusiness) {
+    //}
 
-    public Initialize() {
-        this.InitGridRowTemplate();
-        this.InitializeGrid();
+    public Initialize = () => {
+        $("#books-table").DataTable();
+        //this.InitGridRowTemplate();
+        //this.InitializeGrid();
     }
 
     public InitGridRowTemplate = (): void => {
@@ -27,7 +28,8 @@ class BookGridController {
     }
 
     public InitializeGrid(): void {
-        this.grid = new DataTable();
+        $(this.gridSelector).DataTable();
+        //this.grid = new DataTable();
         this.grid.init({
             src: $(this.gridSelector),
             dataTable: {
@@ -45,7 +47,7 @@ class BookGridController {
                 ],
                 "pageLength": 20,
                 "ajax": {
-                    "url": this.business.GetBooksUrl()
+                    "url": ""//this.business.GetBooksUrl()
                 },
                 "createdRow": (row, data, index) => {
                     $(row).html(this.rowTemplate.format(index));
