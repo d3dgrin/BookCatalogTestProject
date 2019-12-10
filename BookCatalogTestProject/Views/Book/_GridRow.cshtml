@@ -3,21 +3,19 @@
         <tbody>
             <tr>
                 <td class="text-center">
-                    <div class="form-group form-md-line-input">
-                        <input class="form-control" disabled data-bind="value: Books()[{0}].Id">
-                    </div>
+                    <span data-bind="text: Books()[0].Id"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[{0}].Title"></span>
+                    <span data-bind="text: Books()[0].Title"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[{0}].PublicationDate"></span>
+                    <span data-bind="text: Books()[0].PublicationDate"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[{0}].Rating"></span>
+                    <span data-bind="text: Books()[0].Rating"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[{0}].PagesCount"></span>
+                    <span data-bind="text: Books()[0].PagesCount"></span>
                 </td>
             </tr>
         </tbody>

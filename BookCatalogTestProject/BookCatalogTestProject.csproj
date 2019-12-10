@@ -197,7 +197,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
-    <Content Include="Views\Book\_BookGrid.cshtml" />
+    <Content Include="Views\Book\_Grid.cshtml" />
     <Content Include="Views\Book\_GridRow.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
   </ItemGroup>
