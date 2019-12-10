@@ -1,16 +1,16 @@
 ﻿class BookBusiness {
     public Model: BooksModel = new BooksModel();
 
-    public ApplyBindingsDelegate = () => void {}
+    public InitDatatable = () => void {}
 
     constructor(public service: BookService) { }
 
-    public InitBooks(): void {
+    public InitBooks = () => {
         this.service.GetBooks().done((result: any) => {
             if (result.IsSuccess) {
                 this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
                 this.ApplyBindings();
-                $("#books-table").DataTable();
+                this.InitDatatable();
             }
         });
     }

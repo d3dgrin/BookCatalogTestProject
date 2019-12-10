@@ -3,15 +3,24 @@
 class BookController {
 
     constructor(public business: BookBusiness) {
-        this.business.ApplyBindingsDelegate = this.ApplyBindings;
+        this.business.InitDatatable = this.InitDatatable;
     }
 
     public Initialize(): void {
         this.business.InitBooks();
     }
 
-    private ApplyBindings = () => {
-        ko.applyBindings(this.business.Model);
+    private InitDatatable = () => {
+        $("#books-table").DataTable({
+            data: this.business.Model.Books(),
+            columns: [
+                { data: "Id" },
+                { data: "Title" },
+                { data: "PublicationDate" },
+                { data: "Rating" },
+                { data: "PagesCount" }
+            ]
+        });
     }
 
     //public OnDrawCallback = (data: any): void => {
