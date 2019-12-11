@@ -2,7 +2,7 @@
     constructor(public urls: BookUrlModel) {
     }
 
-    public GetBooks(): JQueryXHR {
+    public GetAuthors(): JQueryXHR {
         return $.get(this.urls.GetBooksUrl);
     }
 }

@@ -1,54 +1,88 @@
-﻿
+﻿@Scripts.Render("~/bundles/author")
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Authors";
 }
 
 <h2>Authors</h2>
 
-<p><input id="auhtors-select2" multiple="multiple" /></p>
-<p><button id="populate-btn">Populate</button></p>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: Authors()">
+                <tr>
+                    <td data-bind="text: Id()"></td>
+                    <td data-bind="text: Name()"></td>
+                    <td data-bind="text: Surname()"></td>
+                    <td>
+                        <button data-bind="click: OnEdit" class="btn btn-default">EDIT</button>
+                        <button data-bind="click: function(){ $data.remove(); }" class="btn btn-danger">DELETE</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<p><input id="auhtors-select2" multiple="multiple" /></p>
+    <p><button id="populate-btn">Populate</button></p>*@
 
 <script>
     $(function () {
 
-        var data = [
-            {
-                id: 0,
-                text: 'enhancement'
-            },
-            {
-                id: 1,
-                text: 'bug'
-            },
-            {
-                id: 2,
-                text: 'duplicate'
-            },
-            {
-                id: 3,
-                text: 'invalid'
-            },
-            {
-                id: 4,
-                text: 'wontfix'
-            }
-        ];
+        var urls = {
+            GetAuthorsUrl: '@Url.Action("GetAuthors", "Author")'
+        };
 
-        var selectedData = [
-            {
-                id: 4,
-                text: 'wontfix'
-            }
-        ];
+        var controller = new AuthorController(new AuthorBusiness(new AuthorService(urls)));
 
-        $("#auhtors-select2").select2({
-            placeholder: "Search authors",
-            data: data
-        });
+        controller.Initialize();
 
-        $("#populate-btn").click(function() {
-           $("#auhtors-select2").val(selectedData);
-        });
+        //var data = [
+        //    {
+        //        id: 0,
+        //        text: 'enhancement'
+        //    },
+        //    {
+        //        id: 1,
+        //        text: 'bug'
+        //    },
+        //    {
+        //        id: 2,
+        //        text: 'duplicate'
+        //    },
+        //    {
+        //        id: 3,
+        //        text: 'invalid'
+        //    },
+        //    {
+        //        id: 4,
+        //        text: 'wontfix'
+        //    }
+        //];
+
+        //var selectedData = [
+        //    {
+        //        id: 4,
+        //        text: 'wontfix'
+        //    }
+        //];
+
+        //$("#auhtors-select2").select2({
+        //    placeholder: "Search authors",
+        //    data: data
+        //});
+
+        //$("#populate-btn").click(function() {
+        //   $("#auhtors-select2").val(selectedData);
+        //});
 
     })
 </script>

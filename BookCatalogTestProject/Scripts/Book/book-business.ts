@@ -1,7 +1,7 @@
 ﻿class BookBusiness {
     public Model: BooksModel = new BooksModel();
 
-    constructor(public service: BookService) { }
+    constructor(private service: BookService) { }
 
     public ConvertResponse = (books: Book[]): BookModel[] => {
         return books.map((book: Book) => {

@@ -34,8 +34,11 @@ namespace BookCatalogTestProject
 
             bundles.Add(new ScriptBundle("~/bundles/book").Include(
                       "~/Scripts/Book/Model/*.js",
-                      "~/Scripts/Book/book-business.js",
                       "~/Scripts/Book/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/author").Include(
+                      "~/Scripts/Author/Model/*.js",
+                      "~/Scripts/Author/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

@@ -237,6 +237,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Author\author-business.ts" />
+    <TypeScriptCompile Include="Scripts\Author\author-controller.ts" />
+    <TypeScriptCompile Include="Scripts\Author\author-service.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\author-model.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\author-url-model.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\author.d.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\authors-model.ts" />
     <TypeScriptCompile Include="Scripts\Book\book-business.ts" />
     <TypeScriptCompile Include="Scripts\Book\book-controller.ts" />
     <TypeScriptCompile Include="Scripts\Book\book-grid-controller.ts" />
