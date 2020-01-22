@@ -3,6 +3,21 @@
     ViewBag.Title = "Authors";
 }
 
+<div class="row" data-bind="visible: ShowEditBlock">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="authorName">Name</label>
+            <input type="text" class="form-control" id="authorName" data-bind="textInput: Name">
+        </div>
+        <div class="form-group">
+            <label for="authorSurname">Surname</label>
+            <input type="text" class="form-control" id="authorSurname" data-bind="textInput: Surname">
+        </div>
+        <button class="btn btn-default">Save</button>
+        <button class="btn btn-danger" data-bind="click: function(){ ShowEditBlock(false) }">Cancel</button>
+    </div>
+</div>
+
 <h2>Authors</h2>
 
 <div class="row">

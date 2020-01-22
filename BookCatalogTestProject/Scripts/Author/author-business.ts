@@ -23,8 +23,11 @@
     }
 
     private OnEdit = (model: AuthorModel, event: Event): void => {
-        this.Model.Authors().push(model);
-        ko.applyBindings(this.Model);
-        this.Model.Authors.valueHasMutated();
+        this.Model.ShowEditBlock(true);
+        this.Model.Name(model.Name());
+        this.Model.Surname(model.Surname());
+        //this.Model.Authors().push(model);
+        //ko.applyBindings(this.Model);
+        //this.Model.Authors.valueHasMutated();
     }
 }

@@ -13,7 +13,7 @@ namespace BookCatalogTestProject
                         "~/Scripts/moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                        "~/Scripts/datatables.js"));
+                        "~/Scripts/DataTables/jquery.dataTables.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
@@ -45,7 +45,7 @@ namespace BookCatalogTestProject
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                      "~/Content/datatables.css"));
+                      "~/Content/DataTables/css/jquery.dataTables.css"));
         }
     }
 }
