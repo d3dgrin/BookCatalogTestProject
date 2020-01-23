@@ -35,6 +35,16 @@ namespace BookCatalogTestProject.Controllers
             }
         }
 
+        public JsonResult UpdateAuthor(AuthorVM model)
+        {
+            using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+            {
+                domain.UpdateAuthor(model);
+
+                return Success();
+            }
+        }
+
         public JsonResult DeleteAuthor(int id)
         {
             using (var domain = Factory.GetService<IAuthorDM>(RequestContext))

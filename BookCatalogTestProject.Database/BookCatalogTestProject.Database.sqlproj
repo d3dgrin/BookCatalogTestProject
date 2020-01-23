@@ -70,6 +70,7 @@
     <Build Include="dbo\User Defined Types\IntArrayType.sql" />
     <Build Include="dbo\Stored Procedures\USPCreateBook.sql" />
     <Build Include="dbo\Stored Procedures\USPCreateAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\USPUpdateAuthor.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\00001_Book_Insert.sql" />

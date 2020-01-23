@@ -12,6 +12,7 @@ namespace BookCatalogTestProject.Infrastructure.Data
         IEnumerable<AuthorEM> GetAuthors();
         AuthorEM GetAuthor(int id);
         void CreateAuthor(AuthorEM model);
+        void UpdateAuthor(AuthorEM model);
         void DeleteAuthor(int id);
     }
 }

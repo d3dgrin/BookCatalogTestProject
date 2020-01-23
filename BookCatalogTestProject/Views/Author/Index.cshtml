@@ -3,17 +3,19 @@
     ViewBag.Title = "Authors";
 }
 
-<div class="row" data-bind="visible: ShowEditBlock">
+<div class="row" data-bind="visible: ShowEditBlock" id="editAuthor">
     <div class="col-md-12">
+        <h2>Edit author</h2>
+        <input type="hidden" class="form-control" id="authorId" data-bind="value: AuthorEdit.Id">
         <div class="form-group">
             <label for="authorName">Name</label>
-            <input type="text" class="form-control" id="authorName" data-bind="textInput: Name">
+            <input type="text" class="form-control" id="authorName" data-bind="textInput: AuthorEdit.Name">
         </div>
         <div class="form-group">
             <label for="authorSurname">Surname</label>
-            <input type="text" class="form-control" id="authorSurname" data-bind="textInput: Surname">
+            <input type="text" class="form-control" id="authorSurname" data-bind="textInput: AuthorEdit.Surname">
         </div>
-        <button class="btn btn-default">Save</button>
+        <button class="btn btn-default" data-bind="click: OnEditSave">Save</button>
         <button class="btn btn-danger" data-bind="click: function(){ ShowEditBlock(false) }">Cancel</button>
     </div>
 </div>
@@ -22,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="authorsTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -51,9 +53,12 @@
 
 <script>
     $(function () {
-
+        $(window).bind("beforeunload",function(event) {
+            return "You have some unsaved changes";
+        });
         var urls = {
-            GetAuthorsUrl: '@Url.Action("GetAuthors", "Author")'
+            GetAuthorsUrl: '@Url.Action("GetAuthors", "Author")',
+            UpdateAuthorUrl: '@Url.Action("UpdateAuthor", "Author")'
         };
 
         var controller = new AuthorController(new AuthorBusiness(new AuthorService(urls)));

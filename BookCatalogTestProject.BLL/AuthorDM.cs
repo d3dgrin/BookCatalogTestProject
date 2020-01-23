@@ -47,6 +47,15 @@ namespace BookCatalogTestProject.BLL
             }
         }
 
+        public void UpdateAuthor(AuthorVM model)
+        {
+            using (var repo = Factory.GetService<IAuthorRepository>(DataContext))
+            {
+                var entityModel = entService.ConvertTo<AuthorVM, AuthorEM>(model);
+                repo.UpdateAuthor(entityModel);
+            }
+        }
+
         public void DeleteAuthor(int id)
         {
             using (var repo = Factory.GetService<IAuthorRepository>(DataContext))

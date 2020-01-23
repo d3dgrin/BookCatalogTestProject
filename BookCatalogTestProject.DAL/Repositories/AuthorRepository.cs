@@ -51,7 +51,23 @@ namespace BookCatalogTestProject.DAL.Repositories
             DynamicParameters sqlParams = new DynamicParameters();
 
             sqlParams.Add("@Name", model.Name, DbType.String);
-            sqlParams.Add("@Surname", model.Surname, DbType.DateTime);
+            sqlParams.Add("@Surname", model.Surname, DbType.String);
+
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdateAuthor(AuthorEM model)
+        {
+            string spName = "USPUpdateAuthor";
+
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("@Id", model.Id, DbType.String);
+            sqlParams.Add("@Name", model.Name, DbType.String);
+            sqlParams.Add("@Surname", model.Surname, DbType.String);
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
