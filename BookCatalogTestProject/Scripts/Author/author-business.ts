@@ -33,7 +33,9 @@
         this.Model.AuthorEdit.Id(model.Id());
         this.Model.AuthorEdit.Name(model.Name());
         this.Model.AuthorEdit.Surname(model.Surname());
-        this.Model.ShowEditBlock(true);
+        //this.Model.ShowEditBlock(true);
+
+        $('#editAuthorModal').modal('show');
     }
 
     private OnEditSave = (model: AuthorsModel, event: Event): void => {
