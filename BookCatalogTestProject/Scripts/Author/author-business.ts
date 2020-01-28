@@ -3,6 +3,8 @@
 
     constructor(public service: AuthorService) {
         this.Model.OnEditSave = this.OnEditSave;
+        this.Model.OnAdd = this.OnAdd;
+        this.Model.OnAddSave = this.OnAddSave;
     }
 
     public GetAuthors = () => {
@@ -46,5 +48,21 @@
                 author.Surname(model.AuthorEdit.Surname());
             }
         });
+    }
+
+    private OnAdd = (model: AuthorsModel, event: Event): void => {
+        this.ClearModalBindings();
+        $('#createAuthorModal').modal('show');
+    }
+
+    private OnAddSave = (model: AuthorsModel, event: Event): void => {
+        debugger;
+    }
+
+    private ClearModalBindings = (): void => {
+        var element = $('#createAuthorModal')[0];
+        ko.cleanNode(element);
+        this.Model.AuthorEdit = new AuthorModel();
+        ko.applyBindings(this.Model, element);
     }
 }
