@@ -71,6 +71,7 @@
     <Build Include="dbo\Stored Procedures\USPCreateBook.sql" />
     <Build Include="dbo\Stored Procedures\USPCreateAuthor.sql" />
     <Build Include="dbo\Stored Procedures\USPUpdateAuthor.sql" />
+    <Build Include="dbo\Stored Procedures\USPDeleteAuthor.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\00001_Book_Insert.sql" />

@@ -4,4 +4,5 @@
     public Surname: KnockoutObservable<string> = ko.observable(null);
 
     OnEdit: (model: AuthorModel, event: Event) => void;
+    OnDelete: (model: AuthorModel, event: Event) => void;
 }

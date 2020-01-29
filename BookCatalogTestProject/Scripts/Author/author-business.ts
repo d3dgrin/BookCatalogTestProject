@@ -10,6 +10,7 @@
     public GetAuthors = () => {
         this.service.GetAuthors().done((result: any) => {
             if (result.IsSuccess) {
+                ko.cleanNode(window.document.body);
                 this.Model.Authors = ko.observableArray(this.ConvertResponse(result.Model));
                 ko.applyBindings(this.Model);
             }
@@ -24,6 +25,7 @@
             result.Surname(author.Surname);
 
             result.OnEdit = this.OnEdit;
+            result.OnDelete = this.OnDelete;
 
             return result;
         });
@@ -36,6 +38,14 @@
         //this.Model.ShowEditBlock(true);
 
         $('#editAuthorModal').modal('show');
+    }
+
+    private OnDelete = (model: AuthorModel, event: Event): void => {
+        this.service.DeleteAuthor(model.Id()).done((result: any) => {
+            if (result.IsSuccess) {
+                this.GetAuthors();
+            }
+        });
     }
 
     private OnEditSave = (model: AuthorsModel, event: Event): void => {
@@ -58,7 +68,12 @@
     }
 
     private OnAddSave = (model: AuthorsModel, event: Event): void => {
-        debugger;
+        this.service.CreateAuthor(model.AuthorEdit).done((result: any) => {
+            if (result.IsSuccess) {
+                $('#createAuthorModal').modal('hide');
+                this.GetAuthors();
+            }
+        });
     }
 
     private ClearModalBindings = (): void => {

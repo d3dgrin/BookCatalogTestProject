@@ -45,7 +45,7 @@
                     <td data-bind="text: Surname()"></td>
                     <td>
                         <button data-bind="click: OnEdit" class="btn btn-default">EDIT</button>
-                        <button data-bind="click: function(){ $data.remove(); }" class="btn btn-danger">DELETE</button>
+                        <button data-bind="click: OnDelete" class="btn btn-danger">DELETE</button>
                     </td>
                 </tr>
             </tbody>
@@ -117,7 +117,9 @@
     $(function () {
         var urls = {
             GetAuthorsUrl: '@Url.Action("GetAuthors", "Author")',
-            UpdateAuthorUrl: '@Url.Action("UpdateAuthor", "Author")'
+            CreateAuthorUrl: '@Url.Action("CreateAuthor", "Author")',
+            UpdateAuthorUrl: '@Url.Action("UpdateAuthor", "Author")',
+            DeleteAuthorUrl: '@Url.Action("DeleteAuthor", "Author")'
         };
 
         var controller = new AuthorController(new AuthorBusiness(new AuthorService(urls)));

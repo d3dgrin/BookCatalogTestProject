@@ -77,14 +77,15 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void DeleteAuthor(int id)
         {
-            string query = @"DELETE FROM [Author] WHERE [Id] = @id";
+            string spName = "USPDeleteAuthor";
 
-            var sqlParams = new DynamicParameters();
-            sqlParams.Add("@id", id, DbType.Int32);
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("@Id", id, DbType.Int32);
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                db.Query(query, sqlParams);
+                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
             }
         }
     }
