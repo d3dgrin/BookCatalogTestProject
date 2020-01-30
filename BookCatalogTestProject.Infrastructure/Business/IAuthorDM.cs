@@ -11,7 +11,7 @@ namespace BookCatalogTestProject.Infrastructure.Business
     {
         IEnumerable<AuthorVM> GetAuthors();
         AuthorVM GetAuthor(int id);
-        void CreateAuthor(AuthorVM model);
+        AuthorVM CreateAuthor(AuthorVM model);
         void UpdateAuthor(AuthorVM model);
         void DeleteAuthor(int id);
     }

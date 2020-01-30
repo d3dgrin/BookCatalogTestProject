@@ -38,12 +38,13 @@ namespace BookCatalogTestProject.BLL
             }
         }
 
-        public void CreateAuthor(AuthorVM model)
+        public AuthorVM CreateAuthor(AuthorVM model)
         {
             using (var repo = Factory.GetService<IAuthorRepository>(DataContext))
             {
                 var entityModel = entService.ConvertTo<AuthorVM, AuthorEM>(model);
-                repo.CreateAuthor(entityModel);
+                var result = repo.CreateAuthor(entityModel);
+                return entService.ConvertTo<AuthorEM, AuthorVM>(result);
             }
         }
 

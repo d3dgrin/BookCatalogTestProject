@@ -17,6 +17,14 @@
         });
     }
 
+    public GetAuthors2 = () => {
+        this.service.GetAuthors().done((result: any) => {
+            if (result.IsSuccess) {
+                this.Model.Authors = ko.observableArray(this.ConvertResponse(result.Model));
+            }
+        });
+    }
+
     private ConvertResponse = (authors: Author[]): AuthorModel[] => {
         return authors.map((author: Author) => {
             var result = new AuthorModel();
@@ -43,7 +51,7 @@
     private OnDelete = (model: AuthorModel, event: Event): void => {
         this.service.DeleteAuthor(model.Id()).done((result: any) => {
             if (result.IsSuccess) {
-                this.GetAuthors();
+                this.GetAuthors2();
             }
         });
     }
@@ -70,10 +78,17 @@
     private OnAddSave = (model: AuthorsModel, event: Event): void => {
         this.service.CreateAuthor(model.AuthorEdit).done((result: any) => {
             if (result.IsSuccess) {
-                $('#createAuthorModal').modal('hide');
-                this.GetAuthors();
+                var newModel = new AuthorModel();
+                newModel.Id(result.Model.Id);
+                newModel.Name(result.Model.Name);
+                newModel.Surname(result.Model.Surname);
+                newModel.OnEdit = this.OnEdit;
+                newModel.OnDelete = this.OnDelete;
+
+                this.Model.Authors.push(newModel);
             }
         });
+        $('#createAuthorModal').modal('hide');
     }
 
     private ClearModalBindings = (): void => {

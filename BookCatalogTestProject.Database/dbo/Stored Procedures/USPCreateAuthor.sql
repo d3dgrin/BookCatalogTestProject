@@ -7,4 +7,6 @@ BEGIN
 	INSERT INTO [Author] ([Name], [Surname])
 	VALUES (@Name, @Surname);
 
+	SELECT SCOPE_IDENTITY() AS Id, @Name AS Name, @Surname AS Surname;
+
 END;

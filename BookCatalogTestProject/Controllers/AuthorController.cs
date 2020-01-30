@@ -29,9 +29,9 @@ namespace BookCatalogTestProject.Controllers
         {
             using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
             {
-                domain.CreateAuthor(model);
+                var result = domain.CreateAuthor(model);
 
-                return Success();
+                return Success(result);
             }
         }
 

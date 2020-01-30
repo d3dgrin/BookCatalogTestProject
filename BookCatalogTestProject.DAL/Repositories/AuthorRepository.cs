@@ -44,7 +44,7 @@ namespace BookCatalogTestProject.DAL.Repositories
             }
         }
 
-        public void CreateAuthor(AuthorEM model)
+        public AuthorEM CreateAuthor(AuthorEM model)
         {
             string spName = "USPCreateAuthor";
 
@@ -55,7 +55,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
+                return db.Query<AuthorEM>(spName, sqlParams, null, true, null, CommandType.StoredProcedure).FirstOrDefault();
             }
         }
 
