@@ -10,7 +10,8 @@ namespace BookCatalogTestProject
         {
             bundles.Add(new ScriptBundle("~/bundles/bookcatalog").Include(
                         "~/Scripts/polyfill.js",
-                        "~/Scripts/moment.js"));
+                        "~/Scripts/moment.js",
+                        "~/Scripts/knockout.mapping-latest.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                         "~/Scripts/DataTables/jquery.dataTables.js"));

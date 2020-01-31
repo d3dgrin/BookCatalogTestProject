@@ -17,24 +17,9 @@
         });
     }
 
-    public GetAuthors2 = () => {
-        this.service.GetAuthors().done((result: any) => {
-            if (result.IsSuccess) {
-                this.Model.Authors = ko.observableArray(this.ConvertResponse(result.Model));
-            }
-        });
-    }
-
     private ConvertResponse = (authors: Author[]): AuthorModel[] => {
         return authors.map((author: Author) => {
-            var result = new AuthorModel();
-            result.Id(author.Id);
-            result.Name(author.Name);
-            result.Surname(author.Surname);
-
-            result.OnEdit = this.OnEdit;
-            result.OnDelete = this.OnDelete;
-
+            var result = this.MapModel(author);
             return result;
         });
     }
@@ -43,7 +28,6 @@
         this.Model.AuthorEdit.Id(model.Id());
         this.Model.AuthorEdit.Name(model.Name());
         this.Model.AuthorEdit.Surname(model.Surname());
-        //this.Model.ShowEditBlock(true);
 
         $('#editAuthorModal').modal('show');
     }
@@ -51,7 +35,7 @@
     private OnDelete = (model: AuthorModel, event: Event): void => {
         this.service.DeleteAuthor(model.Id()).done((result: any) => {
             if (result.IsSuccess) {
-                this.GetAuthors2();
+                this.Model.Authors.remove((author: AuthorModel) => author.Id() === model.Id());
             }
         });
     }
@@ -59,15 +43,12 @@
     private OnEditSave = (model: AuthorsModel, event: Event): void => {
         this.service.UpdateAuthor(model.AuthorEdit).done((result: any) => {
             if (result.IsSuccess) {
-                this.Model.ShowEditBlock(false);
-                let id = model.AuthorEdit.Id();
-                let author = this.Model.Authors().filter(a => {
-                    return a.Id() == id;
-                })[0];
+                let author = this.Model.Authors().filter(a => a.Id() === model.AuthorEdit.Id())[0];
                 author.Name(model.AuthorEdit.Name());
                 author.Surname(model.AuthorEdit.Surname());
             }
         });
+        $('#editAuthorModal').modal('hide');
     }
 
     private OnAdd = (model: AuthorsModel, event: Event): void => {
@@ -78,13 +59,7 @@
     private OnAddSave = (model: AuthorsModel, event: Event): void => {
         this.service.CreateAuthor(model.AuthorEdit).done((result: any) => {
             if (result.IsSuccess) {
-                var newModel = new AuthorModel();
-                newModel.Id(result.Model.Id);
-                newModel.Name(result.Model.Name);
-                newModel.Surname(result.Model.Surname);
-                newModel.OnEdit = this.OnEdit;
-                newModel.OnDelete = this.OnDelete;
-
+                var newModel = this.MapModel(result.Model);
                 this.Model.Authors.push(newModel);
             }
         });
@@ -96,5 +71,13 @@
         ko.cleanNode(element);
         this.Model.AuthorEdit = new AuthorModel();
         ko.applyBindings(this.Model, element);
+    }
+
+    private MapModel = (data: any): AuthorModel => {
+        var newModel = ko.mapping.fromJS(data);
+        newModel.OnEdit = this.OnEdit;
+        newModel.OnDelete = this.OnDelete;
+
+        return newModel;
     }
 }
