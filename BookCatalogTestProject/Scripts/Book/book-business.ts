@@ -1,29 +1,89 @@
 ﻿class BookBusiness {
     public Model: BooksModel = new BooksModel();
 
-    OnBooksReceive: (model: BooksModel) => void;
-
-    constructor(private service: BookService) { }
-
-    public ConvertResponse = (books: Book[]): BookModel[] => {
-        return books.map((book: Book) => {
-            var result = new BookModel(book);
-            return result;
-        });
-    }
-
-    public GetBooksUrl(): string {
-        return this.service.urls.GetBooksUrl;
+    constructor(public service: BookService) {
+        this.Model.OnEditSave = this.OnEditSave;
+        this.Model.OnAdd = this.OnAdd;
+        this.Model.OnAddSave = this.OnAddSave;
     }
 
     public GetBooks = () => {
         this.service.GetBooks().done((result: any) => {
             if (result.IsSuccess) {
                 this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
-                this.OnBooksReceive(this.Model);
+                ko.applyBindings(this.Model);
             }
         });
     }
+
+    private ConvertResponse = (books: Book[]): BookModel[] => {
+        return books.map((book: Book) => {
+            var result = this.MapModel(book);
+            return result;
+        });
+    }
+
+    private MapModel = (data: any): BookModel => {
+        var newModel = ko.mapping.fromJS(data);
+        newModel.OnEdit = this.OnEdit;
+        newModel.OnDelete = this.OnDelete;
+
+        return newModel;
+    }
+
+    private OnEdit = (model: BookModel, event: Event): void => {
+        
+    }
+
+    private OnEditSave = (model: BooksModel, event: Event): void => {
+        
+    }
+
+    private OnAdd = (model: BooksModel, event: Event): void => {
+        
+    }
+
+    private OnAddSave = (model: BooksModel, event: Event): void => {
+        
+    }
+
+    private OnDelete = (model: BookModel, event: Event): void => {
+        
+    }
+
+
+
+
+
+
+
+
+
+    //public Model: BooksModel = new BooksModel();
+
+    //OnBooksReceive: (model: BooksModel) => void;
+
+    //constructor(private service: BookService) { }
+
+    //public ConvertResponse = (books: Book[]): BookModel[] => {
+    //    return books.map((book: Book) => {
+    //        var result = new BookModel(book);
+    //        return result;
+    //    });
+    //}
+
+    //public GetBooksUrl(): string {
+    //    return this.service.urls.GetBooksUrl;
+    //}
+
+    //public GetBooks = () => {
+    //    this.service.GetBooks().done((result: any) => {
+    //        if (result.IsSuccess) {
+    //            this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
+    //            this.OnBooksReceive(this.Model);
+    //        }
+    //    });
+    //}
 
     
 

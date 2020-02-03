@@ -49,6 +49,15 @@ namespace BookCatalogTestProject.BLL
             }
         }
 
+        public void UpdateBook(CreateBookVM model)
+        {
+            using (var repo = Factory.GetService<IBookRepository>(DataContext))
+            {
+                var createBookEM = entService.ConvertTo<CreateBookVM, CreateBookEM>(model);
+                repo.UpdateBook(createBookEM);
+            }
+        }
+
         public void DeleteBook(int id)
         {
             using (var repo = Factory.GetService<IBookRepository>(DataContext))

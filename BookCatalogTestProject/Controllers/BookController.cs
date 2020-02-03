@@ -15,6 +15,11 @@ namespace BookCatalogTestProject.Controllers
             return View();
         }
 
+        public ActionResult Index2()
+        {
+            return View();
+        }
+
         public JsonResult GetBooks()
         {
             using (var domain = Factory.GetService<IBookDM>(RequestContext))
@@ -30,6 +35,16 @@ namespace BookCatalogTestProject.Controllers
             using (var domain = Factory.GetService<IBookDM>(RequestContext))
             {
                 domain.CreateBook(model);
+
+                return Success();
+            }
+        }
+
+        public JsonResult UpdateBook(CreateBookVM model)
+        {
+            using (var domain = Factory.GetService<IBookDM>(RequestContext))
+            {
+                domain.UpdateBook(model);
 
                 return Success();
             }

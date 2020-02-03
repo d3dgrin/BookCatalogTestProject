@@ -1,25 +1,25 @@
 ﻿class BookGridController {
-    private rowTemplate: string;
-    private gridRowTemplateMarkupSelector: string = '#book-grid-row-template';
+    //private rowTemplate: string;
+    //private gridRowTemplateMarkupSelector: string = '#book-grid-row-template';
 
-    public DrawCallback: (data: any) => void;
+    //public DrawCallback: (data: any) => void;
 
-    constructor(public business: BookBusiness) {
-        business.OnBooksReceive = this.OnBookReceive;
-    }
+    //constructor(public business: BookBusiness) {
+    //    business.OnBooksReceive = this.OnBookReceive;
+    //}
 
-    public Initialize = () => {
-        this.InitGridRowTemplate();
-        this.InitializeGrid();
-    }
+    //public Initialize = () => {
+    //    this.InitGridRowTemplate();
+    //    this.InitializeGrid();
+    //}
     
-    public InitGridRowTemplate = (): void => {
-        this.rowTemplate = $(this.gridRowTemplateMarkupSelector + "> table > tbody > tr").html();
-    }
+    //public InitGridRowTemplate = (): void => {
+    //    this.rowTemplate = $(this.gridRowTemplateMarkupSelector + "> table > tbody > tr").html();
+    //}
 
-    public InitializeGrid(): void {
+    //public InitializeGrid(): void {
 
-        this.business.GetBooks();
+        //this.business.GetBooks();
 
         //$("#book-data-table").DataTable({
         //    //deferLoading: 0,
@@ -71,10 +71,10 @@
         //    //    { targets: 'non-sorting', orderable: false },
         //    //]
         //});
-    }
+    //}
 
-    private OnBookReceive = (model: BooksModel): void => {
-        $("#book-data-table").DataTable({
+    //private OnBookReceive = (model: BooksModel): void => {
+        //$("#book-data-table").DataTable({
             //deferLoading: 0,
             //preDrawCallback: () => {
             //    ko.cleanNode($("book-tbody")[0]);
@@ -82,7 +82,7 @@
             //drawCallback: (oSettings) => {
             //    this.DrawCallback(oSettings.aoData.map(function (obj) { return obj._aData }));
             //},
-            data: model.Books,
+            //data: model.Books,
             //columns: [
             //    {
             //        name: "Model",
@@ -112,14 +112,14 @@
             //],
             //ordering: true,
             //order: [0, 'desc'],
-            createdRow: (row, data, index) => {
-                $(row).html(this.rowTemplate.format(index));
-                console.log("createdRow");
-            },
+            //createdRow: (row, data, index) => {
+            //    $(row).html(this.rowTemplate.format(index));
+            //    console.log("createdRow");
+            //},
             //columnDefs: [
             //    { targets: 'sorting', orderable: true },
             //    { targets: 'non-sorting', orderable: false },
             //]
-        });
-    }
+        //});
+    //}
 }

@@ -76,6 +76,25 @@ namespace BookCatalogTestProject.DAL.Repositories
             }
         }
 
+        public void UpdateBook(CreateBookEM model)
+        {
+            string spName = "USPUpdateBook";
+
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("@Id", model.Id, DbType.Int32);
+            sqlParams.Add("@Title", model.Title, DbType.String);
+            sqlParams.Add("@PublicationDate", model.PublicationDate, DbType.DateTime);
+            sqlParams.Add("@Rating", model.Rating, DbType.Int32);
+            sqlParams.Add("@PagesCount", model.PagesCount, DbType.Int32);
+            sqlParams.Add("@AuthorIds", model.AuthorIds.AsDataTableParam().AsTableValuedParameter(DataBaseCustomType.IntArrayType));
+
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
+            }
+        }
+
         public void DeleteBook(int id)
         {
             string query = @"DELETE FROM [Book] WHERE [Id] = @id";

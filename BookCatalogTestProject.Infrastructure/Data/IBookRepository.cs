@@ -13,6 +13,7 @@ namespace BookCatalogTestProject.Infrastructure.Data
         IEnumerable<BookEM> GetBooks();
         BookEM GetBook(int id);
         void CreateBook(CreateBookEM model);
+        void UpdateBook(CreateBookEM model);
         void DeleteBook(int id);
     }
 }

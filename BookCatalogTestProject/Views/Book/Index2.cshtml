@@ -1,0 +1,132 @@
+﻿@Scripts.Render("~/bundles/book")
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Books</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-default" aria-label="Left Align" data-bind="click: OnAdd">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <div class="col-md-12">
+            <br />
+            <table class="table table-bordered" id="booksTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Publication Date</th>
+                        <th>Rating</th>
+                        <th>Pages Count</th>
+                        <th>Authors</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: Books()">
+                    <tr>
+                        <td data-bind="text: Id()"></td>
+                        <td data-bind="text: Title()"></td>
+                        <td data-bind="text: PublicationDate()"></td>
+                        <td data-bind="text: Rating()"></td>
+                        <td data-bind="text: Rating()"></td>
+                        <td data-bind="text: PagesCount()"></td>
+                        <td>
+                            <button data-bind="click: OnEdit" class="btn btn-default">EDIT</button>
+                            <button data-bind="click: OnDelete" class="btn btn-danger">DELETE</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modals -->
+<div class="modal fade" id="createBookModal" tabindex="-1" role="dialog" aria-labelledby="createBookModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add new book</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="createBookTitle">Title</label>
+                    <input type="text" class="form-control" id="createBookTitle" data-bind="textInput: BookEdit.Title">
+                </div>
+                <div class="form-group">
+                    <label for="createBookDate">Publication Date</label>
+                    <input type="text" class="form-control" id="createBookDate" data-bind="textInput: BookEdit.PublicationDate">
+                </div>
+                <div class="form-group">
+                    <label for="createBookRating">Rating</label>
+                    <input type="text" class="form-control" id="createBookRating" data-bind="textInput: BookEdit.Rating">
+                </div>
+                <div class="form-group">
+                    <label for="createBookPages">Pages Count</label>
+                    <input type="text" class="form-control" id="createBookPages" data-bind="textInput: BookEdit.PagesCount">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click: OnAddSave">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit existing book</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editBookId">Id</label>
+                    <input type="text" class="form-control" id="editBookId" data-bind="value: BookEdit.Id" disabled>
+                </div>
+                <input type="hidden" class="form-control" id="editAuthorId" data-bind="value: BookEdit.Id">
+                <div class="form-group">
+                    <label for="editBookTitle">Title</label>
+                    <input type="text" class="form-control" id="editBookTitle" data-bind="textInput: BookEdit.Title">
+                </div>
+                <div class="form-group">
+                    <label for="editBookDate">Publication Date</label>
+                    <input type="text" class="form-control" id="editBookDate" data-bind="textInput: BookEdit.PublicationDate">
+                </div>
+                <div class="form-group">
+                    <label for="editBookRating">Rating</label>
+                    <input type="text" class="form-control" id="editBookRating" data-bind="textInput: BookEdit.Rating">
+                </div>
+                <div class="form-group">
+                    <label for="editBookPages">Pages Count</label>
+                    <input type="text" class="form-control" id="editBookPages" data-bind="textInput: BookEdit.PagesCount">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click: OnEditSave">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var urls = {
+            GetBooksUrl: '@Url.Action("GetBooks", "Book")',
+            CreateBookUrl: '@Url.Action("CreateBook", "Book")',
+            UpdateBookUrl: '@Url.Action("UpdateBook", "Book")',
+            DeleteBookUrl: '@Url.Action("DeleteBook", "Book")'
+        };
+
+        var controller = new BookController(new BookBusiness(new BookService(urls)));
+
+        controller.Initialize();
+    });
+</script>
