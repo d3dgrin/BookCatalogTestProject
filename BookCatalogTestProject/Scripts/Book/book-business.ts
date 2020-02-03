@@ -25,6 +25,7 @@
 
     private MapModel = (data: any): BookModel => {
         var newModel = ko.mapping.fromJS(data);
+        newModel.PublicationDate(moment(newModel.PublicationDate()).format("DD/MM/YYYY"));
         newModel.OnEdit = this.OnEdit;
         newModel.OnDelete = this.OnDelete;
 
