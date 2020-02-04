@@ -22,7 +22,7 @@
                 </thead>
                 <tbody data-bind="foreach: Authors()">
                     <tr>
-                        <td data-bind="text: Id()"></td>
+                        <td data-bind="text: AuthorId()"></td>
                         <td data-bind="text: Name()"></td>
                         <td data-bind="text: Surname()"></td>
                         <td>
@@ -73,9 +73,9 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="editAuthorId">Id</label>
-                    <input type="text" class="form-control" id="editAuthorId" data-bind="value: AuthorEdit.Id" disabled>
+                    <input type="text" class="form-control" id="editAuthorId" data-bind="value: AuthorEdit.AuthorId" disabled>
                 </div>
-                <input type="hidden" class="form-control" id="editAuthorId" data-bind="value: AuthorEdit.Id">
+                <input type="hidden" class="form-control" id="editAuthorId" data-bind="value: AuthorEdit.AuthorId">
                 <div class="form-group">
                     <label for="editAuthorName">Name</label>
                     <input type="text" class="form-control" id="editAuthorName" data-bind="textInput: AuthorEdit.Name">

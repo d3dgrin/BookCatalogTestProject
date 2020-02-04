@@ -20,7 +20,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public IEnumerable<AuthorEM> GetAuthors()
         {
-            string query = @"SELECT [Id], [Name], [Surname] FROM [Author]";
+            string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
@@ -32,7 +32,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public AuthorEM GetAuthor(int id)
         {
-            string query = @"SELECT [Id], [Name], [Surname] FROM [Author] WHERE [Id] = @id";
+            string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author] WHERE [AuthorId] = @id";
             var sqlParams = new DynamicParameters();
             sqlParams.Add("@id", id, DbType.Int32);
 
@@ -65,7 +65,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
             DynamicParameters sqlParams = new DynamicParameters();
 
-            sqlParams.Add("@Id", model.Id, DbType.String);
+            sqlParams.Add("@Id", model.AuthorId, DbType.String);
             sqlParams.Add("@Name", model.Name, DbType.String);
             sqlParams.Add("@Surname", model.Surname, DbType.String);
 

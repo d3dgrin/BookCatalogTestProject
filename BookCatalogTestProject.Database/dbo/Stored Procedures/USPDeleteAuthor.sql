@@ -7,6 +7,6 @@ BEGIN
 	WHERE [AuthorId] = @Id;
 
 	DELETE FROM [Author]
-	WHERE [Id] = @Id;
+	WHERE [AuthorId] = @Id;
 
 END;

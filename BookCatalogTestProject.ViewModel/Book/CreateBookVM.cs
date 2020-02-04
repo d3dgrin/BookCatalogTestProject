@@ -9,7 +9,7 @@ namespace BookCatalogTestProject.ViewModel.Book
 {
     public class CreateBookVM
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
         public string Title { get; set; }
         public DateTime PublicationDate { get; set; }
         public int Rating { get; set; }

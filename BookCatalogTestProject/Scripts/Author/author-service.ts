@@ -11,7 +11,7 @@
     }
 
     public UpdateAuthor(data: AuthorModel): JQueryXHR {
-        return $.post(this.urls.UpdateAuthorUrl, { Id: data.Id(), Name: data.Name(), Surname: data.Surname() });
+        return $.post(this.urls.UpdateAuthorUrl, { Id: data.AuthorId(), Name: data.Name(), Surname: data.Surname() });
     }
 
     public DeleteAuthor(id: number): JQueryXHR {

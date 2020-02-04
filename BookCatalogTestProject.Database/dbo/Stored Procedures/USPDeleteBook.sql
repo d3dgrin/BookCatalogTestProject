@@ -7,6 +7,6 @@ BEGIN
 	WHERE [BookId] = @Id;
 
 	DELETE FROM [Book]
-	WHERE [Id] = @Id;
+	WHERE [BookId] = @Id;
 
 END

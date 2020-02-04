@@ -7,6 +7,6 @@ BEGIN
 
 	UPDATE [Author]
 	SET [Name] = @Name, [Surname] = @Surname
-	WHERE [Id] = @Id;
+	WHERE [AuthorId] = @Id;
 
 END;

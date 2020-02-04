@@ -10,7 +10,7 @@ BEGIN
 
 	UPDATE [Book]
 	SET [Title] = @Title, [PublicationDate] = @PublicationDate, [Rating] = @Rating, [PagesCount] = @PagesCount
-	WHERE [Id] = @Id;
+	WHERE [BookId] = @Id;
 
 	DELETE FROM [BookAuthor]
 	WHERE [BookId] = @Id;

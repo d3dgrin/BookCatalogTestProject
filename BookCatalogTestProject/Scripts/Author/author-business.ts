@@ -25,7 +25,7 @@
     }
 
     private OnEdit = (model: AuthorModel, event: Event): void => {
-        this.Model.AuthorEdit.Id(model.Id());
+        this.Model.AuthorEdit.AuthorId(model.AuthorId());
         this.Model.AuthorEdit.Name(model.Name());
         this.Model.AuthorEdit.Surname(model.Surname());
 
@@ -33,9 +33,9 @@
     }
 
     private OnDelete = (model: AuthorModel, event: Event): void => {
-        this.service.DeleteAuthor(model.Id()).done((result: any) => {
+        this.service.DeleteAuthor(model.AuthorId()).done((result: any) => {
             if (result.IsSuccess) {
-                this.Model.Authors.remove((author: AuthorModel) => author.Id() === model.Id());
+                this.Model.Authors.remove((author: AuthorModel) => author.AuthorId() === model.AuthorId());
             }
         });
     }
@@ -43,7 +43,7 @@
     private OnEditSave = (model: AuthorsModel, event: Event): void => {
         this.service.UpdateAuthor(model.AuthorEdit).done((result: any) => {
             if (result.IsSuccess) {
-                let author = this.Model.Authors().filter(a => a.Id() === model.AuthorEdit.Id())[0];
+                let author = this.Model.Authors().filter(a => a.AuthorId() === model.AuthorEdit.AuthorId())[0];
                 author.Name(model.AuthorEdit.Name());
                 author.Surname(model.AuthorEdit.Surname());
             }

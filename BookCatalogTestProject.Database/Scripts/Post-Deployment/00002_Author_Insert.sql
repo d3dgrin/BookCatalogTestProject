@@ -1,11 +1,11 @@
 ﻿DECLARE @Author TABLE 
 (
-	[Id]		INT NOT NULL,
+	[AuthorId]		INT NOT NULL,
 	[Name]		VARCHAR(64) NOT NULL,
 	[Surname]	VARCHAR(64) NOT NULL
 );
 
-INSERT INTO @Author ([Id], [Name], [Surname])
+INSERT INTO @Author ([AuthorId], [Name], [Surname])
 VALUES
 (1, 'Preeti', 'Shenoy'),
 (2, 'Durjoy', 'Datta'),
@@ -14,12 +14,12 @@ VALUES
 
 SET IDENTITY_INSERT [Author] ON;
 
-INSERT INTO [Author] ([Id], [Name], [Surname])
-SELECT [temp].[Id]
+INSERT INTO [Author] ([AuthorId], [Name], [Surname])
+SELECT [temp].[AuthorId]
 	,[temp].[Name]
 	,[temp].[Surname]
 FROM @Author AS [temp]
-LEFT JOIN [Author] AS [actual] on [actual].[Id] = [temp].[Id]
-WHERE [actual].[Id] IS NULL
+LEFT JOIN [Author] AS [actual] on [actual].[AuthorId] = [temp].[AuthorId]
+WHERE [actual].[AuthorId] IS NULL
 
 SET IDENTITY_INSERT [Author] OFF;

@@ -23,18 +23,26 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public IEnumerable<BookEM> GetBooks()
         {
-            string query = @"SELECT [Id]
-                                  ,[Title]
-                                  ,[PublicationDate]
-                                  ,[Rating]
-                                  ,[PagesCount]
-                              FROM [Book]";
+            string spName = "USPGetBooks";
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                var booksEM = db.Query<BookEM>(query);
+                var books = db.Query<BookEM, AuthorEM, BookEM>(spName, (book, author) =>
+                {
+                    book.Authors.Add(author);
+                    return book;
+                }, null, null, true, splitOn: "AuthorId", null, CommandType.StoredProcedure);
 
-                return booksEM;
+                var result = books.GroupBy(b => b.BookId).Select(g =>
+                {
+                    var groupedPost = g.First();
+                    groupedPost.Authors = g.Select(a => a.Authors.Single()).ToList();
+                    return groupedPost;
+                });
+
+                return result;
+
+                //return db.Query<BookEM>(spName, null, null, true, null, CommandType.StoredProcedure);
             }
         }
 

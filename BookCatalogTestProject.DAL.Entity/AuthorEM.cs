@@ -8,7 +8,11 @@ namespace BookCatalogTestProject.DAL.Entity
 {
     public class AuthorEM
     {
-        public int Id { get; set; }
+        public AuthorEM()
+        {
+        }
+
+        public int AuthorId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
     }
