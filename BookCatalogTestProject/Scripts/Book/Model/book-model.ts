@@ -1,5 +1,5 @@
 ﻿class BookModel {
-    public Id: KnockoutObservable<number> = ko.observable(null);
+    public BookId: KnockoutObservable<number> = ko.observable(null);
     public Title: KnockoutObservable<string> = ko.observable(null);
     public PublicationDate: KnockoutObservable<string> = ko.observable(null);
     public Rating: KnockoutObservable<number> = ko.observable(null);

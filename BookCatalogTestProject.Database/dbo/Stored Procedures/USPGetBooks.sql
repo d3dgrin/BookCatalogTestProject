@@ -2,12 +2,12 @@
 AS
 BEGIN
 
-	SELECT b.[BookId] AS BookId, 
+	SELECT b.[BookId], 
 		b.Title, 
 		b.PublicationDate, 
 		b.Rating, 
 		b.PagesCount,
-		a.[AuthorId] AS AuthorId,
+		a.[AuthorId],
 		a.Name,
 		a.Surname
 	FROM [Book] b

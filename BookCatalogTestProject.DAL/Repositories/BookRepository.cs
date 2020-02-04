@@ -29,20 +29,19 @@ namespace BookCatalogTestProject.DAL.Repositories
             {
                 var books = db.Query<BookEM, AuthorEM, BookEM>(spName, (book, author) =>
                 {
-                    book.Authors.Add(author);
+                    if (author != null) book.Authors.Add(author);
+                    else book.Authors = new List<AuthorEM>();
                     return book;
                 }, null, null, true, splitOn: "AuthorId", null, CommandType.StoredProcedure);
 
                 var result = books.GroupBy(b => b.BookId).Select(g =>
                 {
                     var groupedPost = g.First();
-                    groupedPost.Authors = g.Select(a => a.Authors.Single()).ToList();
+                    if (groupedPost.Authors.Any()) groupedPost.Authors = g.Select(a => a.Authors.Single()).ToList();
                     return groupedPost;
-                });
+                }).ToList();
 
                 return result;
-
-                //return db.Query<BookEM>(spName, null, null, true, null, CommandType.StoredProcedure);
             }
         }
 
