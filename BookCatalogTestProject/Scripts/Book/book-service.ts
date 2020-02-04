@@ -17,7 +17,7 @@
     public UpdateBook(data: BookModel): JQueryXHR {
         return $.post(this.urls.UpdateBookUrl,
             {
-                Id: data.Id(), Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount()
+                Id: data.BookId(), Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount()
             }
         );
     }
