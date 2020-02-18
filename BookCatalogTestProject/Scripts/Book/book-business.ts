@@ -41,11 +41,19 @@
     }
 
     private OnAdd = (model: BooksModel, event: Event): void => {
-        
+        $('#createBookModal').modal('show');
+        $("#createBookDate").datepicker();
     }
 
     private OnAddSave = (model: BooksModel, event: Event): void => {
-        
+        debugger;
+        this.service.CreateBook(model.Book).done((result: any) => {
+            if (result.IsSuccess) {
+                var newModel = this.MapModel(result.Model);
+                this.Model.Books.push(newModel);
+            }
+        });
+        $('#createBookModal').modal('hide');
     }
 
     private OnDelete = (model: BookModel, event: Event): void => {
