@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@Scripts.Render("~/bundles/book")
+@Scripts.Render("~/bundles/home")
+@Scripts.Render("~/bundles/plugins/datatables")
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -30,64 +31,82 @@
     </div>
 </div>
 
-
 <div class="row">
-    <div class="col-md-12">
-        <table id="books-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Publication Date</th>
-                    <th>Rating</th>
-                    <th>Pages Count</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @*<tr>
-                    <td>1</td>
-                    <td>afsf</td>
-                    <td>12321</td>
-                    <td>4214</td>
-                    <td>13213</td>
-                    <td>
-                        <button type="button" class="btn btn-success">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td>
-                        <button type="button" class="btn btn-success">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>zzzz</td>
-                    <td>zzzz</td>
-                    <td>zzzz</td>
-                    <td>zzzz</td>
-                    <td>
-                        <button type="button" class="btn btn-success">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>*@
-            </tbody>
-        </table>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+
+        <div class="portlet box">
+            <div class="portlet-title nmn-bg-color-blue">
+
+            </div>
+            <div id="books_grid_body" class="portlet-body">
+                <div class="table-container">
+                    <table id="books_data_table" class="table">
+                        <thead>
+                            <tr role="row" class="heading">
+                                <th data-name="Id">Id</th>
+                                <th data-name="Title">Title</th>
+                                <th data-name="PublicationDate">Publication Date</th>
+                                <th data-name="Rating">Rating</th>
+                                <th data-name="PagesCount">Pages Count</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="books_tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="am_grid_row_template" hidden="hidden">
+
+        </div>
+
+
     </div>
+</div>
+
+
+<div id="books-grid-row-template" class="bc-hidden">
+    <table>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Id"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Title"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].PublicationDate"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Rating"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].PagesCount"></span>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
 <script>
     $(function () {
+         var urls = {
+            GetBooksUrl: '@Url.Action("GetBooks", "Book")',
+            CreateBookUrl: '@Url.Action("CreateBook", "Book")',
+            UpdateBookUrl: '@Url.Action("UpdateBook", "Book")',
+            DeleteBookUrl: '@Url.Action("DeleteBook", "Book")'
+        };
 
-        var bookGridController = new BookGridController();
-        bookGridController.Initialize();
+        var homeBusiness = new HomeBusiness(new HomeService(urls));
+        var homeGridController = new HomeGridController(homeBusiness);
+        var homeController = new HomeController(homeBusiness, homeGridController);
+
+        homeGridController.Initialize();
     })
 </script>

@@ -52,6 +52,16 @@ namespace BookCatalogTestProject
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                       "~/Content/DataTables/css/jquery.dataTables.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/home").Include(
+                      "~/Scripts/Home/Model/*.js",
+                      "~/Scripts/Home/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/plugins/datatables").Include(
+                "~/Scripts/Plugins/Datatables/datatable.js",
+                "~/Scripts/Plugins/Datatables/datatables.min.js",
+                "~/Scripts/Plugins/Datatables/datatables.bootstrap.js"
+                ));
         }
     }
 }

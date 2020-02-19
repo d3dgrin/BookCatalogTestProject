@@ -427,6 +427,9 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Plugins\Datatables\datatable.js" />
+    <Content Include="Scripts\Plugins\Datatables\datatables.bootstrap.js" />
+    <Content Include="Scripts\Plugins\Datatables\datatables.min.js" />
     <Content Include="Scripts\polyfill.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -499,6 +502,14 @@
     <TypeScriptCompile Include="Scripts\Book\Model\book-url-model.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\book.d.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\books-model.ts" />
+    <TypeScriptCompile Include="Scripts\Home\home-business.ts" />
+    <TypeScriptCompile Include="Scripts\Home\home-controller.ts" />
+    <TypeScriptCompile Include="Scripts\Home\home-grid-controller.ts" />
+    <TypeScriptCompile Include="Scripts\Home\home-service.ts" />
+    <TypeScriptCompile Include="Scripts\Home\Model\home-item-model.ts" />
+    <TypeScriptCompile Include="Scripts\Home\Model\home-item.d.ts" />
+    <TypeScriptCompile Include="Scripts\Home\Model\home-model.ts" />
+    <TypeScriptCompile Include="Scripts\Home\Model\home-url-model.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.dataTables\jquery.dataTables.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout.mapping\knockout.mapping.d.ts" />
