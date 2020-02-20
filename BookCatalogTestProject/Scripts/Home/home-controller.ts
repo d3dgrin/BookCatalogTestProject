@@ -12,6 +12,12 @@
 
         this.business.Model.Books = this.MapToObservable(this.business.ConvertResponse(data));
 
+        ko.utils.arrayForEach(this.business.Model.Books(), function (item, index) {
+            if (item.PublicationDate) {
+                item.PublicationDate(moment(item.PublicationDate()).format("DD/MM/YYYY"));
+            }
+        });
+
         ko.applyBindings(this.business.Model, $(this.dataTableBodySelector)[0]);
     }
 

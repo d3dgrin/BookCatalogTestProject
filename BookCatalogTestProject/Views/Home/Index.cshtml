@@ -93,6 +93,8 @@
                     <span data-bind="text: Books()[{0}].PagesCount"></span>
                 </td>
                 <td>
+                    <button class="btn btn-default" data-bind="click: Books()[{0}].EditClick">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         </tbody>

@@ -8,7 +8,14 @@
     public ConvertResponse = (items: HomeItem[]): HomeItemModel[] => {
         return items.map((item: HomeItem) => {
             var result = new HomeItemModel(item);
+
+            result.OnEditClick = this.OnEditClick;
+
             return result;
         });
+    }
+
+    private OnEditClick = (model: HomeItemModel): void => {
+        debugger;
     }
 }
