@@ -454,6 +454,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\typings\jquery.dataTables\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -510,7 +511,6 @@
     <TypeScriptCompile Include="Scripts\Home\Model\home-item.d.ts" />
     <TypeScriptCompile Include="Scripts\Home\Model\home-model.ts" />
     <TypeScriptCompile Include="Scripts\Home\Model\home-url-model.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery.dataTables\jquery.dataTables.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout.mapping\knockout.mapping.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />

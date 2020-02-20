@@ -44,12 +44,18 @@
                     <table id="books_data_table" class="table">
                         <thead>
                             <tr role="row" class="heading">
-                                <th data-name="Id">Id</th>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Publication Date</th>
+                                <th>Rating</th>
+                                <th>Pages Count</th>
+                                <th>Actions</th>
+                                @*<th data-name="BookId">Id</th>
                                 <th data-name="Title">Title</th>
                                 <th data-name="PublicationDate">Publication Date</th>
                                 <th data-name="Rating">Rating</th>
-                                <th data-name="PagesCount">Pages Count</th>
-                                <th>Actions</th>
+                                <th data-name="PagesCount">Pages Count</th>*@
+                                @*<th>Actions</th>*@
                             </tr>
                         </thead>
                         <tbody id="books_tbody"></tbody>
@@ -72,9 +78,9 @@
         <tbody>
             <tr>
                 <td class="text-center">
-                    <span data-bind="text: Books()[{0}].Id"></span>
+                    <span data-bind="text: Books()[{0}].BookId"></span>
                 </td>
-                <td class="text-center">
+                <td>
                     <span data-bind="text: Books()[{0}].Title"></span>
                 </td>
                 <td class="text-center">
