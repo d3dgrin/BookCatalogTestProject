@@ -22,7 +22,9 @@
     }
 
     private OnDeleteClick = (model: AuthorItemModel): void => {
-        debugger;
+        this.service.DeleteAuthor(model.AuthorId()).done(function () {
+            $(document).trigger('author.deleted', null);
+        });
     }
 
 

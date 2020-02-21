@@ -14,7 +14,7 @@
     //    return $.post(this.urls.UpdateAuthorUrl, { Id: data.AuthorId(), Name: data.Name(), Surname: data.Surname() });
     //}
 
-    //public DeleteAuthor(id: number): JQueryXHR {
-    //    return $.post(this.urls.DeleteAuthorUrl, { Id: id });
-    //}
+    public DeleteAuthor(id: number): JQueryXHR {
+        return $.post(this.urls.DeleteAuthorUrl, { Id: id });
+    }
 }

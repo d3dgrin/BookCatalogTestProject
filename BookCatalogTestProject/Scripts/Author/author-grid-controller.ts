@@ -17,7 +17,6 @@
     }
 
     public InitializeGrid(): void {
-        debugger;
         var self = this;
         $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
         };
@@ -35,11 +34,18 @@
             },
             drawCallback: function (settings) {
                 self.DrawCallback(settings.aoData.map(function (obj) { return obj._aData }));
-            },
-            columnDefs: [
-                { targets: 'sorting', orderable: true },
-                { targets: 'non-sorting', orderable: false },
-            ]
+            }
         });
+
+        this.InitializeSubscriptions();
+    }
+
+    private InitializeSubscriptions(): void {
+        $(document).off('author.deleted', this.AuthorDeleted);
+        $(document).on('author.deleted', this.AuthorDeleted);
+    }
+
+    private AuthorDeleted = () => {
+        this.grid.ajax.reload();
     }
 }
