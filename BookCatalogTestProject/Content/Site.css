@@ -23,6 +23,6 @@ textarea {
     max-width: 280px;
 }
 
-bc-hidden {
+.bc-hidden {
     visibility: hidden;
 }

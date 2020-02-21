@@ -23,7 +23,7 @@ class HomeGridController {
         var self = this;
         $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
         };
-        $(this.gridSelector).DataTable({
+        this.grid = $(this.gridSelector).DataTable({
             ajax: {
                 url: this.business.GetBooksUrl(),
                 dataSrc: 'Model'

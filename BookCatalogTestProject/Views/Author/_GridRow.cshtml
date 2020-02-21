@@ -1,0 +1,21 @@
+﻿<div id="authors-grid-row-template" class="bc-hidden">
+    <table>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <span data-bind="text: Authors()[{0}].AuthorId"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Authors()[{0}].Name"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Authors()[{0}].Surname"></span>
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-default" data-bind="click: Authors()[{0}].EditClick">Edit</button>
+                    <button class="btn btn-danger" data-bind="click: Authors()[{0}].DeleteClick">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

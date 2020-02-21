@@ -450,6 +450,8 @@
     <Content Include="Views\Book\_GridRow.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Book\Index2.cshtml" />
+    <Content Include="Views\Author\_Grid.cshtml" />
+    <Content Include="Views\Author\_GridRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,7 +492,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\Author\author-business.ts" />
     <TypeScriptCompile Include="Scripts\Author\author-controller.ts" />
+    <TypeScriptCompile Include="Scripts\Author\author-grid-controller.ts" />
     <TypeScriptCompile Include="Scripts\Author\author-service.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\author-item-model.ts" />
+    <TypeScriptCompile Include="Scripts\Author\Model\author-item.d.ts" />
     <TypeScriptCompile Include="Scripts\Author\Model\author-model.ts" />
     <TypeScriptCompile Include="Scripts\Author\Model\author-url-model.ts" />
     <TypeScriptCompile Include="Scripts\Author\Model\author.d.ts" />
