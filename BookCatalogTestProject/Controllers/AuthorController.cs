@@ -1,5 +1,7 @@
 ﻿using BookCatalogTestProject.Infrastructure.Business;
+using BookCatalogTestProject.Serialization;
 using BookCatalogTestProject.ViewModel.Author;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +17,26 @@ namespace BookCatalogTestProject.Controllers
             return View();
         }
 
-        public JsonResult GetAuthors()
+        [HttpPost]
+        public ActionResult GetAuthors(BaseDataTableFilterVM filter)
         {
             using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
             {
                 var result = domain.GetAuthors();
 
-                return Success(result);
+                return new JsonNetResult()
+                {
+                    Data = new
+                    {
+                        data = result,
+                        draw = filter.Draw,
+                        recordsTotal = 11,
+                        recordsFiltered = 11
+                    },
+                    Formatting = Newtonsoft.Json.Formatting.Indented
+                };
+
+                //return Success(result);
             }
         }
 

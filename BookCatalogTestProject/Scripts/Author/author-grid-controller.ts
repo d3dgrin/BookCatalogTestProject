@@ -21,11 +21,15 @@
         $.fn.dataTable.ext.errMode = function (settings, helpPage, message) {
         };
         this.grid = $(this.gridSelector).DataTable({
+            proccessing: true,
+            serverSide: true,
             ajax: {
                 url: this.business.GetAuthorsUrl(),
-                dataSrc: 'Model'
+                //dataSrc: 'Model',
+                type: 'POST'
             },
             deferLoading: 0,
+            //deferRender: false,
             createdRow: function (row, data, index) {
                 $(row).html(self.rowTemplate.format(index));
             },
@@ -41,11 +45,10 @@
     }
 
     private InitializeSubscriptions(): void {
-        $(document).off('author.deleted', this.AuthorDeleted);
-        $(document).on('author.deleted', this.AuthorDeleted);
+        $(document).off('grid.reload', this.GridReload).on('grid.reload', this.GridReload);
     }
 
-    private AuthorDeleted = () => {
+    private GridReload = () => {
         this.grid.ajax.reload();
     }
 }

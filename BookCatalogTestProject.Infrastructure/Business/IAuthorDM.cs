@@ -1,4 +1,5 @@
 ﻿using BookCatalogTestProject.ViewModel.Author;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BookCatalogTestProject.Infrastructure.Business
 {
     public interface IAuthorDM : IDisposable
     {
-        IEnumerable<AuthorVM> GetAuthors();
+        IEnumerable<AuthorVM> GetAuthors(BaseDataTableFilterVM filter, out int totalFiltered);
         AuthorVM GetAuthor(int id);
         AuthorVM CreateAuthor(AuthorVM model);
         void UpdateAuthor(AuthorVM model);

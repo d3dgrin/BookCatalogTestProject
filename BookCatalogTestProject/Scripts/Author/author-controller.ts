@@ -1,6 +1,7 @@
 ﻿class AuthorController {
 
     private dataTableBodySelector: string = '#authors_tbody';
+    private authorsGridSelector: string = '#authors_grid';
 
     constructor(public business: AuthorBusiness, public gridController: AuthorGridController) {
         this.gridController.DrawCallback = this.OnDrawCallback;
@@ -13,7 +14,8 @@
 
         this.business.Model.Authors = this.MapToObservable(this.business.ConvertResponse(data));
 
-        ko.applyBindings(this.business.Model, $(this.dataTableBodySelector)[0]);
+        ko.cleanNode($(this.authorsGridSelector)[0]);
+        ko.applyBindings(this.business.Model, $(this.authorsGridSelector)[0]);
     }
 
     private MapToObservable(data: AuthorItemModel[]): KnockoutObservableArray<AuthorItemModel> {

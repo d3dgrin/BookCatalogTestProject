@@ -1,8 +1,10 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
+using BookCatalogTestProject.DAL.Entity.Datatable;
 using BookCatalogTestProject.Infrastructure;
 using BookCatalogTestProject.Infrastructure.Business;
 using BookCatalogTestProject.Infrastructure.Data;
 using BookCatalogTestProject.ViewModel.Author;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +20,16 @@ namespace BookCatalogTestProject.BLL
 
         }
 
-        public IEnumerable<AuthorVM> GetAuthors()
+        public IEnumerable<AuthorVM> GetAuthors(BaseDataTableFilterVM filter, out int totalFiltered)
         {
             using (var repo = Factory.GetService<IAuthorRepository>(DataContext))
             {
-                var listEM = repo.GetAuthors();
+                var filterEM = entService.ConvertTo<BaseDataTableFilterVM, BaseDataTableFilterEM>(filter);
+
+                var listEM = repo.GetAuthors(filterEM, out totalFiltered);
+
                 var listVM = entService.ConvertTo<IEnumerable<AuthorEM>, IEnumerable<AuthorVM>>(listEM);
+
                 return listVM;
             }
         }

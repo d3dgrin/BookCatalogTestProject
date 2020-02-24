@@ -51,6 +51,9 @@
     <Compile Include="AuthorEM.cs" />
     <Compile Include="BookEM.cs" />
     <Compile Include="Book\CreateBookEM.cs" />
+    <Compile Include="Datatable\BaseDataTableFilterEM.cs" />
+    <Compile Include="Datatable\DataTableColumnEM.cs" />
+    <Compile Include="Datatable\DataTableOrderEM.cs" />
     <Compile Include="Enums\DataBaseCustomType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

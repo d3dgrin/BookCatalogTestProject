@@ -5,18 +5,14 @@
 <h2>Authors</h2>
 
 <div class="row">
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </button>
-</div>
-
-<div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         @{Html.RenderPartial("_Grid");}
     </div>
 </div>
 
 @{Html.RenderPartial("_GridRow");}
+
+@{Html.RenderPartial("_Modal");}
 
 <script>
     $(function () {

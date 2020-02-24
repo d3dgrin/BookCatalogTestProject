@@ -14,6 +14,15 @@
     //    return $.post(this.urls.UpdateAuthorUrl, { Id: data.AuthorId(), Name: data.Name(), Surname: data.Surname() });
     //}
 
+    public CreateAuthor(data: AuthorItemModel): JQueryXHR {
+        return $.post(this.urls.CreateAuthorUrl, { Name: data.Name(), Surname: data.Surname() });
+    }
+
+    public UpdateAuthor(data: AuthorItemModel): JQueryXHR {
+        debugger;
+        return $.post(this.urls.UpdateAuthorUrl, { AuthorId: data.AuthorId(), Name: data.Name(), Surname: data.Surname() });
+    }
+
     public DeleteAuthor(id: number): JQueryXHR {
         return $.post(this.urls.DeleteAuthorUrl, { Id: id });
     }

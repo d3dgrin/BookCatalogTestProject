@@ -2,9 +2,11 @@
 using BookCatalogTestProject.BLL;
 using BookCatalogTestProject.DAL.Entity;
 using BookCatalogTestProject.DAL.Entity.Book;
+using BookCatalogTestProject.DAL.Entity.Datatable;
 using BookCatalogTestProject.ViewModel;
 using BookCatalogTestProject.ViewModel.Author;
 using BookCatalogTestProject.ViewModel.Book;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,19 @@ namespace BookCatalogTestProject.Bootstrap
                 mapper.CreateMap<CreateBookVM, CreateBookEM>().ReverseMap();
 
                 mapper.CreateMap<AuthorVM, AuthorEM>().ReverseMap();
+
+                mapper.CreateMap<BaseDataTableFilterVM, BaseDataTableFilterEM>()
+                .ForMember(dest => dest.SearchExpression, opt => opt.MapFrom(src => src.Search.Value))
+                .AfterMap((source, dest) =>
+                {
+                    var orderColumn = source.Order.FirstOrDefault();
+                    var column = source.Columns.ElementAt(orderColumn != null ? orderColumn.Column : 0);
+                    dest.IsAscOrder = orderColumn?.Dir == "asc";
+                    dest.OrderColumnName = column?.Name;
+                });
+
+                mapper.CreateMap<DataTableOrderVM, DataTableOrderEM>();
+                mapper.CreateMap<DataTableColumnVM, DataTableColumnEM>();
             });
         }
     }

@@ -1,5 +1,6 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
 using BookCatalogTestProject.DAL.Entity.Book;
+using BookCatalogTestProject.DAL.Entity.Datatable;
 using BookCatalogTestProject.Infrastructure.Data;
 using Dapper;
 using System;
@@ -18,16 +19,37 @@ namespace BookCatalogTestProject.DAL.Repositories
         {
         }
 
-        public IEnumerable<AuthorEM> GetAuthors()
+        public IEnumerable<AuthorEM> GetAuthors(BaseDataTableFilterEM filter, out int totalFiltered)
         {
-            string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
+            string spName = "USPGetAuthors";
+
+            var order = filter.Order.First();
+            var column = filter.Columns[order.Column];
+
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("OrderBy", column.Name);
+            sqlParams.Add("Direction", order.Dir);
+            sqlParams.Add("Start", filter.Start);
+            sqlParams.Add("Length", filter.Length);
+            sqlParams.Add("TotalFiltered", DbType.Int32, direction: ParameterDirection.Output);
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                var entitiesModel = db.Query<AuthorEM>(query);
-
-                return entitiesModel;
+                var result = db.Query<AuthorEM>(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
+                totalFiltered = sqlParams.Get<int?>("@TotalFiltered") ?? 0;
+                return result;
             }
+            
+
+            //string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
+
+            //using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            //{
+            //    var entitiesModel = db.Query<AuthorEM>(query);
+
+            //    return entitiesModel;
+            //}
         }
 
         public AuthorEM GetAuthor(int id)

@@ -44,6 +44,10 @@
     <Compile Include="Author\AuthorVM.cs" />
     <Compile Include="BookVM.cs" />
     <Compile Include="Book\CreateBookVM.cs" />
+    <Compile Include="Datatable\BaseDataTableFilterVM.cs" />
+    <Compile Include="Datatable\DataTableColumnVM.cs" />
+    <Compile Include="Datatable\DataTableOrderVM.cs" />
+    <Compile Include="Datatable\DataTableSearchVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
