@@ -4,7 +4,7 @@
     private gridRowTemplateMarkupSelector: string = '#authors-grid-row-template';
     private gridSelector: string = "#authors_data_table";
     private gridBodySelector: string = "#authors_tbody";
-    private defaultOrdering = { columnIndx: 2 /* Time of Submission */, direction: 'asc' };
+    private defaultOrdering = { columnIndx: 2, direction: 'asc' };
 
     public DrawCallback: (data: any) => void;
 
@@ -28,7 +28,13 @@
                 //dataSrc: 'Model',
                 type: 'POST'
             },
-            deferLoading: 0,
+            columnDefs: [
+                { targets: 'sorting', orderable: true },
+                { targets: 'non-sorting', orderable: false },
+            ],
+            ordering: true,
+            order: [this.defaultOrdering.columnIndx, this.defaultOrdering.direction],
+            //deferLoading: 0,
             //deferRender: false,
             createdRow: function (row, data, index) {
                 $(row).html(self.rowTemplate.format(index));

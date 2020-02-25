@@ -22,7 +22,7 @@ namespace BookCatalogTestProject.Controllers
         {
             using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
             {
-                var result = domain.GetAuthors();
+                var result = domain.GetAuthors(filter, out int totalFiltered);
 
                 return new JsonNetResult()
                 {
@@ -30,8 +30,8 @@ namespace BookCatalogTestProject.Controllers
                     {
                         data = result,
                         draw = filter.Draw,
-                        recordsTotal = 11,
-                        recordsFiltered = 11
+                        recordsTotal = totalFiltered,
+                        recordsFiltered = totalFiltered
                     },
                     Formatting = Newtonsoft.Json.Formatting.Indented
                 };
