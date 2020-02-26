@@ -5,27 +5,30 @@
 
 <h2>Books</h2>
 
-<div id="book-grid">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            @{ Html.RenderPartial("~/Views/Book/_Grid.cshtml"); }
-        </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        @{Html.RenderPartial("_Grid");}
     </div>
 </div>
 
-@Html.Partial("_GridRow")
+@{Html.RenderPartial("_GridRow");}
+
+@{Html.RenderPartial("_Modal");}
 
 <script>
     $(function () {
 
-        var urls = {
-            GetBooksUrl: '@Url.Action("GetBooks", "Book")'
+       var urls = {
+            GetBooksUrl: '@Url.Action("GetBooks", "Book")',
+            CreateAuthorUrl: '@Url.Action("CreateBook", "Book")',
+            UpdateAuthorUrl: '@Url.Action("UpdateBook", "Book")',
+            DeleteAuthorUrl: '@Url.Action("DeleteBook", "Book")'
         };
 
         var business = new BookBusiness(new BookService(urls));
-        var grid = new BookGridController(business);
-        var controller = new BookController(business, grid);
+        var gridController = new BookGridController(business);
+        var controller = new BookController(business, gridController);
 
-        grid.Initialize();
+        gridController.Initialize();
     })
 </script>

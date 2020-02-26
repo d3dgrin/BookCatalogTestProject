@@ -1,11 +1,11 @@
 ﻿class BookModel {
-    public BookId: KnockoutObservable<number> = ko.observable(null);
-    public Title: KnockoutObservable<string> = ko.observable(null);
-    public PublicationDate: KnockoutObservable<string> = ko.observable(null);
-    public Rating: KnockoutObservable<number> = ko.observable(null);
-    public PagesCount: KnockoutObservable<number> = ko.observable(null);
-    public Authors: KnockoutObservableArray<AuthorModel> = ko.observableArray<AuthorModel>([]);
+    constructor() {
+    }
 
-    OnEdit: (model: BookModel, event: Event) => void;
-    OnDelete: (model: BookModel, event: Event) => void;
+    public Books: KnockoutObservableArray<BookItemModel> = ko.observableArray<BookItemModel>([]);
+    public BookModal: BookItemModel = new BookItemModel({ BookId: 0, Title: '', PublicationDate: '', Rating: 0, PagesCount: 0, Authors: '' });
+
+    public AddClick: () => void = () => { this.OnAddClick(); };
+
+    public OnAddClick: () => void = () => { };
 }

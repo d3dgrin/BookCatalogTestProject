@@ -1,21 +1,28 @@
-﻿<div id="book-grid-row-template" class="bc-hidden">
+﻿<div id="books-grid-row-template" class="bc-hidden">
     <table>
         <tbody>
             <tr>
                 <td class="text-center">
-                    <span data-bind="text: Books()[0].Id"></span>
+                    <span data-bind="text: Books()[{0}].BookId"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[0].Title"></span>
+                    <span data-bind="text: Books()[{0}].Title"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[0].PublicationDate"></span>
+                    <span data-bind="text: Books()[{0}].PublicationDate"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[0].Rating"></span>
+                    <span data-bind="text: Books()[{0}].Rating"></span>
                 </td>
                 <td class="text-center">
-                    <span data-bind="text: Books()[0].PagesCount"></span>
+                    <span data-bind="text: Books()[{0}].PagesCount"></span>
+                </td>
+                <td class="text-center">
+                    <span data-bind="text: Books()[{0}].Authors"></span>
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-default" data-bind="click: Books()[{0}].EditClick">Edit</button>
+                    <button class="btn btn-danger" data-bind="click: Books()[{0}].DeleteClick">Delete</button>
                 </td>
             </tr>
         </tbody>

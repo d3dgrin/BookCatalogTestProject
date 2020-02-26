@@ -1,106 +1,60 @@
 ﻿class BookBusiness {
-    public Model: BooksModel = new BooksModel();
+    public Model: BookModel = new BookModel();
 
     constructor(public service: BookService) {
-        this.Model.OnEditSave = this.OnEditSave;
-        this.Model.OnAdd = this.OnAdd;
-        this.Model.OnAddSave = this.OnAddSave;
+        this.Model.OnAddClick = this.OnAddClick;
+        this.Model.BookModal.OnEditSaveClick = this.OnAddSaveClick;
     }
 
-    public GetBooks = () => {
-        this.service.GetBooks().done((result: any) => {
-            if (result.IsSuccess) {
-                this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
-                ko.applyBindings(this.Model);
-            }
-        });
-    }
+    public GetBooksUrl = () => this.service.urls.GetBooksUrl;
 
-    private ConvertResponse = (books: Book[]): BookModel[] => {
-        return books.map((book: Book) => {
-            var result = this.MapModel(book);
+    public ConvertResponse = (items: BookItem[]): BookItemModel[] => {
+        return items.map((item: BookItem) => {
+            var result = new BookItemModel(item);
+
+            result.OnEditClick = this.OnEditClick;
+            result.OnEditSaveClick = this.OnEditSaveClick;
+            result.OnDeleteClick = this.OnDeleteClick;
+
             return result;
         });
     }
 
-    private MapModel = (data: any): BookModel => {
-        var newModel = ko.mapping.fromJS(data);
-        newModel.PublicationDate(moment(newModel.PublicationDate()).format("DD/MM/YYYY"));
-        newModel.OnEdit = this.OnEdit;
-        newModel.OnDelete = this.OnDelete;
+    private OnAddClick = (): void => {
+        this.Model.BookModal.Title('');
+        this.Model.BookModal.PublicationDate('');
+        this.Model.BookModal.Rating(0);
+        this.Model.BookModal.PagesCount(0);
+        this.Model.BookModal.Authors('');
 
-        return newModel;
+        ko.cleanNode($('#bookModal')[0]);
+        ko.applyBindings(this.Model.BookModal, $('#bookModal')[0]);
+        $('#bookModal').modal('toggle');
     }
 
-    private OnEdit = (model: BookModel, event: Event): void => {
-        
-    }
-
-    private OnEditSave = (model: BooksModel, event: Event): void => {
-        
-    }
-
-    private OnAdd = (model: BooksModel, event: Event): void => {
-        $('#createBookModal').modal('show');
-        $("#createBookDate").datepicker();
-    }
-
-    private OnAddSave = (model: BooksModel, event: Event): void => {
-        debugger;
-        this.service.CreateBook(model.Book).done((result: any) => {
-            if (result.IsSuccess) {
-                var newModel = this.MapModel(result.Model);
-                this.Model.Books.push(newModel);
-            }
+    private OnAddSaveClick = (model: BookItemModel): void => {
+        this.service.CreateBook(model).done(function () {
+            $('#bookModal').modal('toggle');
+            $(document).trigger('grid.reload', null);
         });
-        $('#createBookModal').modal('hide');
     }
 
-    private OnDelete = (model: BookModel, event: Event): void => {
-        
+    private OnEditClick = (model: BookItemModel): void => {
+        ko.cleanNode($('#bookModal')[0]);
+        ko.applyBindings(model, $('#bookModal')[0]);
+        $('#bookModal').modal('toggle');
     }
 
+    private OnEditSaveClick = (model: BookItemModel): void => {
+        this.service.UpdateBook(model).done(function () {
+            $('#bookModal').modal('toggle');
+            $(document).trigger('grid.reload', null);
+        });
+    }
 
-
-
-
-
-
-
-
-    //public Model: BooksModel = new BooksModel();
-
-    //OnBooksReceive: (model: BooksModel) => void;
-
-    //constructor(private service: BookService) { }
-
-    //public ConvertResponse = (books: Book[]): BookModel[] => {
-    //    return books.map((book: Book) => {
-    //        var result = new BookModel(book);
-    //        return result;
-    //    });
-    //}
-
-    //public GetBooksUrl(): string {
-    //    return this.service.urls.GetBooksUrl;
-    //}
-
-    //public GetBooks = () => {
-    //    this.service.GetBooks().done((result: any) => {
-    //        if (result.IsSuccess) {
-    //            this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
-    //            this.OnBooksReceive(this.Model);
-    //        }
-    //    });
-    //}
-
-    
-
-    //private InitBooks = () => {
-    //    this.service.GetBooks().done((result: any) => {
-    //        if (result.IsSuccess) {
-    //            this.Model.Books = ko.observableArray(this.ConvertResponse(result.Model));
-    //        }
-    //    });
-    //}
+    private OnDeleteClick = (model: BookItemModel): void => {
+        this.service.DeleteBook(model.BookId()).done(function () {
+            $(document).trigger('grid.reload', null);
+        });
+    }
 }

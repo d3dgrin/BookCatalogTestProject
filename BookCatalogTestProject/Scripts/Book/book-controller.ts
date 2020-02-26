@@ -1,27 +1,24 @@
 ﻿class BookController {
 
-    constructor(private business: BookBusiness) {
+    private dataTableBodySelector: string = '#books_tbody';
+    private booksGridSelector: string = '#books_grid';
 
+    constructor(public business: BookBusiness, public gridController: BookGridController) {
+        this.gridController.DrawCallback = this.OnDrawCallback;
     }
 
-    public Initialize = () => {
-        this.business.GetBooks();
+    public OnDrawCallback = (data: BookItem[]): void => {
+        if (data.length === 0) {
+            return;
+        }
+
+        this.business.Model.Books = this.MapToObservable(this.business.ConvertResponse(data));
+
+        ko.cleanNode($(this.booksGridSelector)[0]);
+        ko.applyBindings(this.business.Model, $(this.booksGridSelector)[0]);
     }
 
-
-
-
-
-    //constructor(private business: BookBusiness, private grid: BookGridController) {
-    //    this.grid.DrawCallback = this.OnDrawCallback;
-    //}
-
-    //public OnDrawCallback = (data: Book[]): void => {
-    //    this.business.Model.Books = this.MapToObservable(this.business.ConvertResponse(data));
-    //    ko.applyBindings(this.business.Model, $('#book-tbody')[0]);
-    //}
-
-    //private MapToObservable(books: BookModel[]): KnockoutObservableArray<BookModel> {
-    //    return ko.observableArray(books);
-    //}
+    private MapToObservable(data: BookItemModel[]): KnockoutObservableArray<BookItemModel> {
+        return ko.observableArray(data);
+    }
 }

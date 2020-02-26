@@ -21,19 +21,4 @@
     private MapToObservable(data: AuthorItemModel[]): KnockoutObservableArray<AuthorItemModel> {
         return ko.observableArray(data);
     }
-
-
-
-
-
-
-
-
-    //constructor(private business: AuthorBusiness) {
-
-    //}
-
-    //public Initialize = () => {
-    //    this.business.GetAuthors();
-    //}
 }

@@ -35,7 +35,6 @@
             ordering: true,
             order: [this.defaultOrdering.columnIndx, this.defaultOrdering.direction],
             //deferLoading: 0,
-            //deferRender: false,
             createdRow: function (row, data, index) {
                 $(row).html(self.rowTemplate.format(index));
             },

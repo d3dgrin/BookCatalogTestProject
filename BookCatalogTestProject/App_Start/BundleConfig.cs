@@ -13,9 +13,6 @@ namespace BookCatalogTestProject
                         "~/Scripts/moment.js",
                         "~/Scripts/knockout.mapping-latest.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                        "~/Scripts/DataTables/jquery.dataTables.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui.js"));
@@ -50,18 +47,9 @@ namespace BookCatalogTestProject
                       "~/Content/jquery-ui.structure.css",
                       "~/Content/jquery-ui.theme.css"));
 
-            bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                      "~/Content/DataTables/css/jquery.dataTables.css"));
-
             bundles.Add(new ScriptBundle("~/bundles/home").Include(
                       "~/Scripts/Home/Model/*.js",
                       "~/Scripts/Home/*.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/plugins/datatables").Include(
-                "~/Scripts/Plugins/Datatables/datatable.js",
-                "~/Scripts/Plugins/Datatables/datatables.min.js",
-                "~/Scripts/Plugins/Datatables/datatables.bootstrap.js"
-                ));
         }
     }
 }

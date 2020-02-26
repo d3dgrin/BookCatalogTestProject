@@ -1,13 +1,25 @@
-﻿<table id="book-data-table" class="table table-bordered">
-    <thead>
-        <tr role="row" class="heading">
-            <th data-name="Id" class="text-center">ID</th>
-            <th data-name="Title" class="text-center">Title</th>
-            <th data-name="PublicationDate" class="text-center">Publication Date</th>
-            <th data-name="Rating" class="text-center">Rating</th>
-            <th data-name="PagesCount" class="text-center">Pages Count</th>
-            <th class="text-center">Actions</th>
-        </tr>
-    </thead>
-    <tbody id="book-tbody"></tbody>
-</table>
+﻿<div class="portlet box" id="books_grid">
+    <div class="portlet-title nmn-bg-color-blue">
+        <button type="button" class="btn btn-default" aria-label="Left Align" data-bind="click: AddClick">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div id="books_grid_body" class="portlet-body">
+        <div class="table-container">
+            <table id="books_data_table" class="table">
+                <thead>
+                    <tr role="row" class="heading">
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Publication Date</th>
+                        <th class="text-center">Rating</th>
+                        <th class="text-center">Pages Count</th>
+                        <th class="text-center">Authors</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="authors_tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
