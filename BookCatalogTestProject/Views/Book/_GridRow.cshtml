@@ -17,8 +17,8 @@
                 <td class="text-center">
                     <span data-bind="text: Books()[{0}].PagesCount"></span>
                 </td>
-                <td class="text-center">
-                    <span data-bind="text: Books()[{0}].PagesCount"></span>
+                <td class="text-center" data-bind="foreach: Books()[{0}].Authors">
+                    <span data-bind="text: Name + ' ' + Surname"></span><br />
                 </td>
                 <td class="text-center">
                     <button class="btn btn-default" data-bind="click: Books()[{0}].EditClick">Edit</button>
