@@ -1,5 +1,6 @@
 ﻿using BookCatalogTestProject.ViewModel;
 using BookCatalogTestProject.ViewModel.Book;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BookCatalogTestProject.Infrastructure.Business
 {
     public interface IBookDM : IDisposable
     {
-        IEnumerable<BookVM> GetBooks();
+        IEnumerable<BookVM> GetBooks(BaseDataTableFilterVM filter, out int totalFiltered);
         BookVM GetBook(int id);
         void CreateBook(CreateBookVM model);
         void UpdateBook(CreateBookVM model);

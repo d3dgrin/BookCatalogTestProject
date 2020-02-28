@@ -35,8 +35,6 @@ namespace BookCatalogTestProject.Controllers
                     },
                     Formatting = Newtonsoft.Json.Formatting.Indented
                 };
-
-                //return Success(result);
             }
         }
 

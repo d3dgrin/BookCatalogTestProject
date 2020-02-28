@@ -4,5 +4,5 @@
     PublicationDate: string,
     Rating: number,
     PagesCount: number,
-    Authors: string
+    Authors: any
 }

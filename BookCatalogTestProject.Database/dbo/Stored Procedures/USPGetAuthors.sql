@@ -13,13 +13,13 @@ BEGIN
 	INTO #ResultTempTable
 	FROM [Author]
 	ORDER BY
-	CASE WHEN @ORDERBY = 'AuthorId' AND @Direction = 'asc' THEN [AuthorId] END ASC,
-	CASE WHEN @ORDERBY = 'Name' AND @Direction = 'asc' THEN [Name] END ASC,
-	CASE WHEN @ORDERBY = 'Surname' AND @Direction = 'asc' THEN [Surname] END ASC,
+	CASE WHEN @OrderBy = 'AuthorId' AND @Direction = 'asc' THEN [AuthorId] END ASC,
+	CASE WHEN @OrderBy = 'Name' AND @Direction = 'asc' THEN [Name] END ASC,
+	CASE WHEN @OrderBy = 'Surname' AND @Direction = 'asc' THEN [Surname] END ASC,
 
-	CASE WHEN @ORDERBY = 'AuthorId' AND @Direction = 'desc' THEN [AuthorId] END DESC,
-	CASE WHEN @ORDERBY = 'Name' AND @Direction = 'desc' THEN [Name] END DESC,
-	CASE WHEN @ORDERBY = 'Surname' AND @Direction = 'desc' THEN [Surname] END DESC
+	CASE WHEN @OrderBy = 'AuthorId' AND @Direction = 'desc' THEN [AuthorId] END DESC,
+	CASE WHEN @OrderBy = 'Name' AND @Direction = 'desc' THEN [Name] END DESC,
+	CASE WHEN @OrderBy = 'Surname' AND @Direction = 'desc' THEN [Surname] END DESC
 
 	OFFSET @Start ROWS
 	FETCH FIRST @Length ROWS ONLY

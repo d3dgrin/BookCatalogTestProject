@@ -1,10 +1,12 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
 using BookCatalogTestProject.DAL.Entity.Book;
+using BookCatalogTestProject.DAL.Entity.Datatable;
 using BookCatalogTestProject.Infrastructure;
 using BookCatalogTestProject.Infrastructure.Business;
 using BookCatalogTestProject.Infrastructure.Data;
 using BookCatalogTestProject.ViewModel;
 using BookCatalogTestProject.ViewModel.Book;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +22,17 @@ namespace BookCatalogTestProject.BLL
 
         }
 
-        public IEnumerable<BookVM> GetBooks()
+        public IEnumerable<BookVM> GetBooks(BaseDataTableFilterVM filter, out int totalFiltered)
         {
             using (var repo = Factory.GetService<IBookRepository>(DataContext))
             {
-                var booksEM = repo.GetBooks();
-                var booksVM = entService.ConvertTo<IEnumerable<BookEM>, IEnumerable<BookVM>>(booksEM);
-                return booksVM;
+                var filterEM = entService.ConvertTo<BaseDataTableFilterVM, BaseDataTableFilterEM>(filter);
+
+                var listEM = repo.GetBooks(filterEM, out totalFiltered);
+
+                var listVM = entService.ConvertTo<IEnumerable<BookEM>, IEnumerable<BookVM>>(listEM);
+
+                return listVM;
             }
         }
 

@@ -27,14 +27,14 @@ namespace BookCatalogTestProject.Controllers
             return View();
         }
 
-        public JsonResult GetBooks()
-        {
-            using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
-            {
-                var books = bookDm.GetBooks();
+        //public JsonResult GetBooks()
+        //{
+        //    using (var bookDm = Factory.GetService<IBookDM>(RequestContext))
+        //    {
+        //        var books = bookDm.GetBooks();
 
-                return Json(new { data = books }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        return Json(new { data = books }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
     }
 }

@@ -1,5 +1,7 @@
 ﻿using BookCatalogTestProject.Infrastructure.Business;
+using BookCatalogTestProject.Serialization;
 using BookCatalogTestProject.ViewModel.Book;
+using BookCatalogTestProject.ViewModel.Datatable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +17,24 @@ namespace BookCatalogTestProject.Controllers
             return View();
         }
 
-        public ActionResult Index2()
-        {
-            return View();
-        }
-
-        public JsonResult GetBooks()
+        [HttpPost]
+        public ActionResult GetBooks(BaseDataTableFilterVM filter)
         {
             using (var domain = Factory.GetService<IBookDM>(RequestContext))
             {
-                var result = domain.GetBooks();
+                var result = domain.GetBooks(filter, out int totalFiltered);
 
-                return Success(result);
+                return new JsonNetResult()
+                {
+                    Data = new
+                    {
+                        data = result,
+                        draw = filter.Draw,
+                        recordsTotal = totalFiltered,
+                        recordsFiltered = totalFiltered
+                    },
+                    Formatting = Newtonsoft.Json.Formatting.Indented
+                };
             }
         }
 

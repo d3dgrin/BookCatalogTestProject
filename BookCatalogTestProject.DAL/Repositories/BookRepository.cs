@@ -1,5 +1,6 @@
 ﻿using BookCatalogTestProject.DAL.Entity;
 using BookCatalogTestProject.DAL.Entity.Book;
+using BookCatalogTestProject.DAL.Entity.Datatable;
 using BookCatalogTestProject.DAL.Entity.Enums;
 using BookCatalogTestProject.DAL.Extensions;
 using BookCatalogTestProject.Infrastructure.Data;
@@ -21,9 +22,20 @@ namespace BookCatalogTestProject.DAL.Repositories
             
         }
 
-        public IEnumerable<BookEM> GetBooks()
+        public IEnumerable<BookEM> GetBooks(BaseDataTableFilterEM filter, out int totalFiltered)
         {
             string spName = "USPGetBooks";
+
+            var order = filter.Order.First();
+            var column = filter.Columns[order.Column];
+
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("OrderBy", column.Name);
+            sqlParams.Add("Direction", order.Dir);
+            sqlParams.Add("Start", filter.Start);
+            sqlParams.Add("Length", filter.Length);
+            sqlParams.Add("TotalFiltered", DbType.Int32, direction: ParameterDirection.Output);
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
@@ -32,7 +44,7 @@ namespace BookCatalogTestProject.DAL.Repositories
                     if (author != null) book.Authors.Add(author);
                     else book.Authors = new List<AuthorEM>();
                     return book;
-                }, null, null, true, splitOn: "AuthorId", null, CommandType.StoredProcedure);
+                }, sqlParams, null, true, splitOn: "AuthorId", null, CommandType.StoredProcedure);
 
                 var result = books.GroupBy(b => b.BookId).Select(g =>
                 {
@@ -40,6 +52,8 @@ namespace BookCatalogTestProject.DAL.Repositories
                     if (groupedPost.Authors.Any()) groupedPost.Authors = g.Select(a => a.Authors.Single()).ToList();
                     return groupedPost;
                 }).ToList();
+
+                totalFiltered = sqlParams.Get<int?>("@TotalFiltered") ?? 0;
 
                 return result;
             }

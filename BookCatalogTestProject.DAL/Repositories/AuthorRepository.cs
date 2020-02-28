@@ -40,16 +40,6 @@ namespace BookCatalogTestProject.DAL.Repositories
                 totalFiltered = sqlParams.Get<int?>("@TotalFiltered") ?? 0;
                 return result;
             }
-            
-
-            //string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
-
-            //using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
-            //{
-            //    var entitiesModel = db.Query<AuthorEM>(query);
-
-            //    return entitiesModel;
-            //}
         }
 
         public AuthorEM GetAuthor(int id)
