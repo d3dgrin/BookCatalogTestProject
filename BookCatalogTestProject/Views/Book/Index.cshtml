@@ -20,9 +20,9 @@
 
        var urls = {
             GetBooksUrl: '@Url.Action("GetBooks", "Book")',
-            CreateAuthorUrl: '@Url.Action("CreateBook", "Book")',
-            UpdateAuthorUrl: '@Url.Action("UpdateBook", "Book")',
-            DeleteAuthorUrl: '@Url.Action("DeleteBook", "Book")'
+            CreateBookUrl: '@Url.Action("CreateBook", "Book")',
+            UpdateBookUrl: '@Url.Action("UpdateBook", "Book")',
+            DeleteBookUrl: '@Url.Action("DeleteBook", "Book")'
         };
 
         var business = new BookBusiness(new BookService(urls));

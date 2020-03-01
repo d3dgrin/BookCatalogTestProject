@@ -61,7 +61,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public BookEM GetBook(int id)
         {
-            string query = @"SELECT [Id]
+            string query = @"SELECT [BookId]
                                   ,[Title]
                                   ,[PublicationDate]
                                   ,[Rating]
@@ -118,7 +118,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void DeleteBook(int id)
         {
-            string query = @"DELETE FROM [Book] WHERE [Id] = @id";
+            string query = @"DELETE FROM [Book] WHERE [BookId] = @id";
 
             var sqlParams = new DynamicParameters();
             sqlParams.Add("@id", id, DbType.Int32);
