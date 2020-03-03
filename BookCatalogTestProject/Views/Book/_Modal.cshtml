@@ -8,27 +8,31 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="bookTitle">Title</label>
-                    <input type="text" class="form-control" id="bookTitle" data-bind="textInput: Title">
+                    <input type="text" class="form-control" id="bookTitle" data-bind="textInput: BookModal.Title">
                 </div>
                 <div class="form-group">
                     <label for="bookPublicationDate">Publication Date</label>
-                    <input type="text" class="form-control" id="bookPublicationDate" data-bind="textInput: PublicationDate">
+                    <input type="text" class="form-control" id="bookPublicationDate" data-bind="textInput: BookModal.PublicationDate">
                 </div>
                 <div class="form-group">
                     <label for="bookRating">Rating</label>
-                    <input type="text" class="form-control" id="bookRating" data-bind="textInput: Rating">
+                    <input type="text" class="form-control" id="bookRating" data-bind="textInput: BookModal.Rating">
                 </div>
                 <div class="form-group">
                     <label for="bookPagesCount">Pages Count</label>
-                    <input type="text" class="form-control" id="bookPagesCount" data-bind="textInput: PagesCount">
+                    <input type="text" class="form-control" id="bookPagesCount" data-bind="textInput: BookModal.PagesCount">
                 </div>
                 <div class="form-group">
                     <label for="bookAuthors">Authors</label>
-                    <input type="text" class="form-control" id="bookAuthors" data-bind="textInput: Authors">
+                    <select data-bind="options: Authors,
+                       optionsValue: 'AuthorId',
+                       optionsText: 'Name',
+                       value: SelectedAuthors,
+                       optionsCaption: 'Select authors...'" multiple="multiple"></select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bind="click: EditSaveClick">Save</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: BookModal.EditSaveClick">Save</button>
                 </div>
             </div>
         </div>

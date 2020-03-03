@@ -21,4 +21,8 @@
     public DeleteBook(id: number): JQueryXHR {
         return $.post(this.urls.DeleteBookUrl, { Id: id });
     }
+
+    public GetAuthors(): JQueryXHR {
+        return $.get(this.urls.GetAuthorsUrl);
+    }
 }

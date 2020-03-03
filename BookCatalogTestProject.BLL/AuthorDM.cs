@@ -34,6 +34,18 @@ namespace BookCatalogTestProject.BLL
             }
         }
 
+        public IEnumerable<AuthorVM> GetAuthorsWithoutFilter()
+        {
+            using (var repo = Factory.GetService<IAuthorRepository>(DataContext))
+            {
+                var listEM = repo.GetAuthorsWithoutFilter();
+
+                var listVM = entService.ConvertTo<IEnumerable<AuthorEM>, IEnumerable<AuthorVM>>(listEM);
+
+                return listVM;
+            }
+        }
+
         public AuthorVM GetAuthor(int id)
         {
             using (var repo = Factory.GetService<IAuthorRepository>(DataContext))

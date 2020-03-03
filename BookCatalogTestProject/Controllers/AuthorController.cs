@@ -38,6 +38,16 @@ namespace BookCatalogTestProject.Controllers
             }
         }
 
+        public JsonResult GetAuthorsWithoutFilter()
+        {
+            using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+            {
+                var result = domain.GetAuthorsWithoutFilter();
+
+                return Success(result);
+            }
+        }
+
         public JsonResult CreateAuthor(AuthorVM model)
         {
             using (var domain = Factory.GetService<IAuthorDM>(RequestContext))

@@ -12,6 +12,7 @@
     }
 
     public Initialize() {
+        this.business.GetAuthors();
         this.rowTemplate = $(this.gridRowTemplateMarkupSelector + "> table > tbody > tr").html();
         this.InitializeGrid();
     }

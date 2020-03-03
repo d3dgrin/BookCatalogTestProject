@@ -20,15 +20,23 @@
         });
     }
 
+    public GetAuthors = (): void => {
+        debugger;
+        this.service.GetAuthors().done((data) => {
+            debugger;
+            this.Model.Authors = ko.observableArray(data.Model);
+        });
+    }
+
     private OnAddClick = (): void => {
         this.Model.BookModal.Title('');
         this.Model.BookModal.PublicationDate('');
         this.Model.BookModal.Rating(0);
         this.Model.BookModal.PagesCount(0);
-        this.Model.BookModal.Authors('');
+        this.Model.SelectedAuthors = ko.observableArray<number>([]);
 
         ko.cleanNode($('#bookModal')[0]);
-        ko.applyBindings(this.Model.BookModal, $('#bookModal')[0]);
+        ko.applyBindings(this.Model, $('#bookModal')[0]);
         $('#bookModal').modal('toggle');
     }
 

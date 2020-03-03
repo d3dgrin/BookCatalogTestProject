@@ -11,6 +11,7 @@ namespace BookCatalogTestProject.Infrastructure.Business
     public interface IAuthorDM : IDisposable
     {
         IEnumerable<AuthorVM> GetAuthors(BaseDataTableFilterVM filter, out int totalFiltered);
+        IEnumerable<AuthorVM> GetAuthorsWithoutFilter();
         AuthorVM GetAuthor(int id);
         AuthorVM CreateAuthor(AuthorVM model);
         void UpdateAuthor(AuthorVM model);

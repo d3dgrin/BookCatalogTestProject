@@ -42,6 +42,19 @@ namespace BookCatalogTestProject.DAL.Repositories
             }
         }
 
+        public IEnumerable<AuthorEM> GetAuthorsWithoutFilter()
+        {
+            string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
+            var sqlParams = new DynamicParameters();
+
+            using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
+            {
+                var entityModel = db.Query<AuthorEM>(query, sqlParams);
+
+                return entityModel;
+            }
+        }
+
         public AuthorEM GetAuthor(int id)
         {
             string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author] WHERE [AuthorId] = @id";

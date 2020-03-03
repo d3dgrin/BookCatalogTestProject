@@ -11,6 +11,7 @@ namespace BookCatalogTestProject.Infrastructure.Data
     public interface IAuthorRepository : IRepository<AuthorEM, int>
     {
         IEnumerable<AuthorEM> GetAuthors(BaseDataTableFilterEM filter, out int totalFiltered);
+        IEnumerable<AuthorEM> GetAuthorsWithoutFilter();
         AuthorEM GetAuthor(int id);
         AuthorEM CreateAuthor(AuthorEM model);
         void UpdateAuthor(AuthorEM model);
