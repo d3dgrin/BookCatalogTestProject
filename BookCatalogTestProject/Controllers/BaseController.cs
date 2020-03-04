@@ -53,13 +53,13 @@ namespace BookCatalogTestProject.Controllers
             }
         }
 
-        protected JsonResult Success(object model = null)
+        protected JsonResult JsonResponse(object model = null, bool isSuccess = true)
         {
             return new JsonResult()
             {
                 ContentEncoding = Encoding.UTF8,
                 ContentType = "application/json",
-                Data = new { IsSuccess = true, Model = model },
+                Data = new { IsSuccess = isSuccess, Model = model },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

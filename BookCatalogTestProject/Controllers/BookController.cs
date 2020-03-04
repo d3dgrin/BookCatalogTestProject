@@ -40,22 +40,30 @@ namespace BookCatalogTestProject.Controllers
 
         public JsonResult CreateBook(CreateBookVM model)
         {
-            using (var domain = Factory.GetService<IBookDM>(RequestContext))
+            if (ModelState.IsValid)
             {
-                domain.CreateBook(model);
+                using (var domain = Factory.GetService<IBookDM>(RequestContext))
+                {
+                    domain.CreateBook(model);
 
-                return Success();
+                    return JsonResponse();
+                }
             }
+            return JsonResponse(isSuccess: false);
         }
 
         public JsonResult UpdateBook(CreateBookVM model)
         {
-            using (var domain = Factory.GetService<IBookDM>(RequestContext))
+            if (ModelState.IsValid)
             {
-                domain.UpdateBook(model);
+                using (var domain = Factory.GetService<IBookDM>(RequestContext))
+                {
+                    domain.UpdateBook(model);
 
-                return Success();
+                    return JsonResponse();
+                }
             }
+            return JsonResponse(isSuccess: false);
         }
 
         public JsonResult DeleteBook(int id)
@@ -64,7 +72,7 @@ namespace BookCatalogTestProject.Controllers
             {
                 domain.DeleteBook(id);
 
-                return Success();
+                return JsonResponse();
             }
         }
     }

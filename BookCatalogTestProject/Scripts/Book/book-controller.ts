@@ -5,6 +5,7 @@
 
     constructor(public business: BookBusiness, public gridController: BookGridController) {
         this.gridController.DrawCallback = this.OnDrawCallback;
+        this.InitializeValidation();
     }
 
     public OnDrawCallback = (data: BookItem[]): void => {
@@ -20,5 +21,15 @@
 
     private MapToObservable(data: BookItemModel[]): KnockoutObservableArray<BookItemModel> {
         return ko.observableArray(data);
+    }
+
+    private InitializeValidation = (): void => {
+        //$('#bookModalForm').validate({
+        //    rules: {
+        //        bookTitle: {
+        //            required: true
+        //        }
+        //    }
+        //});
     }
 }

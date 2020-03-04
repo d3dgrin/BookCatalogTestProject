@@ -32,7 +32,7 @@
         this.Model.BookModal.PublicationDate(null);
         this.Model.BookModal.Rating(null);
         this.Model.BookModal.PagesCount(null);
-        this.Model.SelectedAuthors = ko.observableArray<number>([]);
+        this.Model.BookModal.SelectedAuthors = ko.observableArray<number>([]);
 
         ko.cleanNode($('#bookModal')[0]);
         ko.applyBindings(this.Model, $('#bookModal')[0]);
@@ -44,10 +44,13 @@
     }
 
     private OnAddSaveClick = (model: any): void => {
-        this.service.CreateBook(model).done(function () {
-            $('#bookModal').modal('hide');
-            $(document).trigger('grid.reload', null);
-        });
+        if ($('#bookModalForm').valid()) {
+            this.service.CreateBook(model).done(function () {
+                $('#bookModal').modal('hide');
+                $(document).trigger('grid.reload', null);
+            });
+        }
+        
     }
 
     private OnEditClick = (model: BookItemModel): void => {
@@ -62,10 +65,12 @@
     }
 
     private OnEditSaveClick = (model: BookItemModel): void => {
-        this.service.UpdateBook(model).done(function () {
-            $('#bookModal').modal('hide');
-            $(document).trigger('grid.reload', null);
-        });
+        if ($('#bookModalForm').valid()) {
+            this.service.UpdateBook(model).done(function () {
+                $('#bookModal').modal('hide');
+                $(document).trigger('grid.reload', null);
+            });
+        }
     }
 
     private OnDeleteClick = (model: BookItemModel): void => {

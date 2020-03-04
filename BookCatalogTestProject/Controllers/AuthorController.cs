@@ -44,28 +44,36 @@ namespace BookCatalogTestProject.Controllers
             {
                 var result = domain.GetAuthorsWithoutFilter();
 
-                return Success(result);
+                return JsonResponse(result);
             }
         }
 
         public JsonResult CreateAuthor(AuthorVM model)
         {
-            using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+            if (ModelState.IsValid)
             {
-                var result = domain.CreateAuthor(model);
+                using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+                {
+                    var result = domain.CreateAuthor(model);
 
-                return Success(result);
+                    return JsonResponse(result);
+                }
             }
+            return JsonResponse(isSuccess: false);
         }
 
         public JsonResult UpdateAuthor(AuthorVM model)
         {
-            using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+            if (ModelState.IsValid)
             {
-                domain.UpdateAuthor(model);
+                using (var domain = Factory.GetService<IAuthorDM>(RequestContext))
+                {
+                    domain.UpdateAuthor(model);
 
-                return Success();
+                    return JsonResponse();
+                }
             }
+            return JsonResponse(isSuccess: false);
         }
 
         public JsonResult DeleteAuthor(int id)
@@ -74,7 +82,7 @@ namespace BookCatalogTestProject.Controllers
             {
                 domain.DeleteAuthor(id);
 
-                return Success();
+                return JsonResponse();
             }
         }
     }

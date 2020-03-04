@@ -1,39 +1,41 @@
 ﻿<div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="bookModalLabel">Edit Author</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="bookTitle">Title</label>
-                    <input type="text" class="form-control" id="bookTitle" data-bind="textInput: BookModal.Title">
+            <form id="bookModalForm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="bookModalLabel">Edit Author</h4>
                 </div>
-                <div class="form-group">
-                    <label for="bookPublicationDate">Publication Date</label>
-                    <input type="text" class="form-control" id="bookPublicationDate" data-bind="textInput: BookModal.PublicationDate">
-                </div>
-                <div class="form-group">
-                    <label for="bookRating">Rating</label>
-                    <input type="text" class="form-control" id="bookRating" data-bind="textInput: BookModal.Rating">
-                </div>
-                <div class="form-group">
-                    <label for="bookPagesCount">Pages Count</label>
-                    <input type="text" class="form-control" id="bookPagesCount" data-bind="textInput: BookModal.PagesCount">
-                </div>
-                <div class="form-group">
-                    <label for="bookAuthors">Authors</label><br />
-                    <select id="bookAuthors" data-bind="options: Authors,
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bookTitle">Title</label>
+                        <input type="text" class="form-control" id="bookTitle" name="bookTitle" data-bind="textInput: BookModal.Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPublicationDate">Publication Date</label>
+                        <input type="text" class="form-control" id="bookPublicationDate" name="bookPublicationDate" data-bind="textInput: BookModal.PublicationDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookRating">Rating</label>
+                        <input type="text" class="form-control" id="bookRating" name="bookRating" data-bind="textInput: BookModal.Rating" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPagesCount">Pages Count</label>
+                        <input type="text" class="form-control" id="bookPagesCount" name="bookPagesCount" data-bind="textInput: BookModal.PagesCount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthors">Authors</label><br />
+                        <select id="bookAuthors" name="bookAuthors" data-bind="options: Authors,
                        optionsValue: 'AuthorId',
                        optionsText: 'Name',
-                       selectedOptions: BookModal.SelectedAuthors" style="width:100%;"  multiple></select>
+                       selectedOptions: BookModal.SelectedAuthors" style="width:100%;" multiple required></select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bind="click: BookModal.EditSaveClick">Save</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bind="click: BookModal.EditSaveClick">Save</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

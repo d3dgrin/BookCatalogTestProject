@@ -144,7 +144,6 @@
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\HandleAllErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -364,14 +363,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\_Grid.cshtml" />
     <Content Include="Views\Book\_GridRow.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
-    <Content Include="Views\Book\Index2.cshtml" />
     <Content Include="Views\Author\_Grid.cshtml" />
     <Content Include="Views\Author\_GridRow.cshtml" />
     <Content Include="Views\Author\_Modal.cshtml" />
@@ -381,7 +376,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\typings\jquery.dataTables\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -430,14 +424,6 @@
     <TypeScriptCompile Include="Scripts\Book\Model\book-item.d.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\book-model.ts" />
     <TypeScriptCompile Include="Scripts\Book\Model\book-url-model.ts" />
-    <TypeScriptCompile Include="Scripts\Home\home-business.ts" />
-    <TypeScriptCompile Include="Scripts\Home\home-controller.ts" />
-    <TypeScriptCompile Include="Scripts\Home\home-grid-controller.ts" />
-    <TypeScriptCompile Include="Scripts\Home\home-service.ts" />
-    <TypeScriptCompile Include="Scripts\Home\Model\home-item-model.ts" />
-    <TypeScriptCompile Include="Scripts\Home\Model\home-item.d.ts" />
-    <TypeScriptCompile Include="Scripts\Home\Model\home-model.ts" />
-    <TypeScriptCompile Include="Scripts\Home\Model\home-url-model.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout.mapping\knockout.mapping.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
