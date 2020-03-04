@@ -103,7 +103,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
             DynamicParameters sqlParams = new DynamicParameters();
 
-            sqlParams.Add("@Id", model.Id, DbType.Int32);
+            sqlParams.Add("@Id", model.BookId, DbType.Int32);
             sqlParams.Add("@Title", model.Title, DbType.String);
             sqlParams.Add("@PublicationDate", model.PublicationDate, DbType.DateTime);
             sqlParams.Add("@Rating", model.Rating, DbType.Int32);
@@ -118,14 +118,15 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public void DeleteBook(int id)
         {
-            string query = @"DELETE FROM [Book] WHERE [BookId] = @id";
+            string spName = "USPDeleteBook";
 
-            var sqlParams = new DynamicParameters();
-            sqlParams.Add("@id", id, DbType.Int32);
+            DynamicParameters sqlParams = new DynamicParameters();
+
+            sqlParams.Add("@Id", id, DbType.Int32);
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))
             {
-                db.Query(query, sqlParams);
+                db.Query(spName, sqlParams, null, true, null, CommandType.StoredProcedure);
             }
         }
     }

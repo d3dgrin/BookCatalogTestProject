@@ -14,5 +14,6 @@ namespace BookCatalogTestProject.DAL.Entity
         public int PagesCount { get; set; }
 
         public List<AuthorEM> Authors { get; set; } = new List<AuthorEM>();
+        public List<int> SelectedAuthors { get; set; } = new List<int>();
     }
 }

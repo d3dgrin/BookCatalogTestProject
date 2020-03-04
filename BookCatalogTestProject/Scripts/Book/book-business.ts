@@ -11,6 +11,7 @@
     public ConvertResponse = (items: BookItem[]): BookItemModel[] => {
         return items.map((item: BookItem) => {
             var result = new BookItemModel(item);
+            result.PublicationDate(moment(result.PublicationDate()).format('MM/DD/YYYY'));
 
             result.OnEditClick = this.OnEditClick;
             result.OnEditSaveClick = this.OnEditSaveClick;
@@ -21,41 +22,48 @@
     }
 
     public GetAuthors = (): void => {
-        debugger;
         this.service.GetAuthors().done((data) => {
-            debugger;
             this.Model.Authors = ko.observableArray(data.Model);
         });
     }
 
     private OnAddClick = (): void => {
-        this.Model.BookModal.Title('');
-        this.Model.BookModal.PublicationDate('');
-        this.Model.BookModal.Rating(0);
-        this.Model.BookModal.PagesCount(0);
+        this.Model.BookModal.Title(null);
+        this.Model.BookModal.PublicationDate(null);
+        this.Model.BookModal.Rating(null);
+        this.Model.BookModal.PagesCount(null);
         this.Model.SelectedAuthors = ko.observableArray<number>([]);
 
         ko.cleanNode($('#bookModal')[0]);
         ko.applyBindings(this.Model, $('#bookModal')[0]);
-        $('#bookModal').modal('toggle');
+        $('#bookAuthors').select2();
+        $('#bookPublicationDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $('#bookModal').modal('show');
     }
 
-    private OnAddSaveClick = (model: BookItemModel): void => {
+    private OnAddSaveClick = (model: any): void => {
         this.service.CreateBook(model).done(function () {
-            $('#bookModal').modal('toggle');
+            $('#bookModal').modal('hide');
             $(document).trigger('grid.reload', null);
         });
     }
 
     private OnEditClick = (model: BookItemModel): void => {
+        this.Model.BookModal = model;
         ko.cleanNode($('#bookModal')[0]);
-        ko.applyBindings(model, $('#bookModal')[0]);
-        $('#bookModal').modal('toggle');
+        ko.applyBindings(this.Model, $('#bookModal')[0]);
+        $('#bookAuthors').select2();
+        $('#bookPublicationDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $('#bookModal').modal('show');
     }
 
     private OnEditSaveClick = (model: BookItemModel): void => {
         this.service.UpdateBook(model).done(function () {
-            $('#bookModal').modal('toggle');
+            $('#bookModal').modal('hide');
             $(document).trigger('grid.reload', null);
         });
     }

@@ -30,6 +30,11 @@ namespace BookCatalogTestProject.BLL
 
                 var listEM = repo.GetBooks(filterEM, out totalFiltered);
 
+                foreach (var item in listEM)
+                {
+                    item.SelectedAuthors = item.Authors.Select(a => a.AuthorId).ToList();
+                }
+
                 var listVM = entService.ConvertTo<IEnumerable<BookEM>, IEnumerable<BookVM>>(listEM);
 
                 return listVM;

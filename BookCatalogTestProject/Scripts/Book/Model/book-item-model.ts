@@ -7,6 +7,7 @@
         this.Rating(model.Rating);
         this.PagesCount(model.PagesCount);
         this.Authors(model.Authors);
+        this.SelectedAuthors(model.SelectedAuthors);
     }
 
     public BookId: KnockoutObservable<number> = ko.observable(null);
@@ -15,6 +16,7 @@
     public Rating: KnockoutObservable<number> = ko.observable(null);
     public PagesCount: KnockoutObservable<number> = ko.observable(null);
     public Authors: any = ko.observable(null);
+    public SelectedAuthors: KnockoutObservableArray<number> = ko.observableArray([]);
 
     public EditClick: () => void = () => { this.OnEditClick(this); };
     public EditSaveClick: () => void = () => { this.OnEditSaveClick(this); };

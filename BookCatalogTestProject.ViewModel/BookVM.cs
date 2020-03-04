@@ -16,5 +16,6 @@ namespace BookCatalogTestProject.ViewModel
         public int PagesCount { get; set; }
 
         public List<AuthorVM> Authors { get; set; } = new List<AuthorVM>();
+        public List<int> SelectedAuthors { get; set; } = new List<int>();
     }
 }

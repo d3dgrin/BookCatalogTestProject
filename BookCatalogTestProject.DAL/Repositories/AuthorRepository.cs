@@ -44,7 +44,7 @@ namespace BookCatalogTestProject.DAL.Repositories
 
         public IEnumerable<AuthorEM> GetAuthorsWithoutFilter()
         {
-            string query = @"SELECT [AuthorId], [Name], [Surname] FROM [Author]";
+            string query = @"SELECT [AuthorId], CONCAT([Name], ' ', [Surname]) AS Name FROM [Author]";
             var sqlParams = new DynamicParameters();
 
             using (IDbConnection db = new SqlConnection(base.CurrentContext.DbConnection))

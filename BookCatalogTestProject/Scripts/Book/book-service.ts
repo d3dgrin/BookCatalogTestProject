@@ -5,7 +5,7 @@
     public CreateBook(data: BookItemModel): JQueryXHR {
         return $.post(this.urls.CreateBookUrl,
             {
-                Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount()
+                Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount(), AuthorIds: data.SelectedAuthors()
             }
         );
     }
@@ -13,7 +13,7 @@
     public UpdateBook(data: BookItemModel): JQueryXHR {
         return $.post(this.urls.UpdateBookUrl,
             {
-                BookId: data.BookId(), Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount()
+                BookId: data.BookId(), Title: data.Title(), PublicationDate: data.PublicationDate(), Rating: data.Rating(), PagesCount: data.PagesCount(), AuthorIds: data.SelectedAuthors()
             }
         );
     }
