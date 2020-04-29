@@ -1,5 +1,6 @@
 ﻿using System;
 using BookCatalogTestProject.Autotests.Helpers;
+using BookCatalogTestProject.Autotests.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
@@ -9,8 +10,6 @@ namespace BookCatalogTestProject.Autotests
     [TestClass]
     public class BookTests : BaseTest
     {
-        private readonly string _url = "Book/Index";
-
         [TestMethod]
         public void BookCreating()
         {
@@ -19,24 +18,20 @@ namespace BookCatalogTestProject.Autotests
             string expectedRating = "10";
             string expectedPagesCount = "100";
 
-            this.NavigateTo(_url);
+            BookPage page = new BookPage(Browser);
 
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_BTN))).Click();
+            page.OpenBookPage();
 
-            this.FindAndSendKeys(expectedTitle, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_TITLE_INPUT_ID)));
-            this.FindAndSendKeys(expectedDate, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PUBLICATIONDATE_INPUT_ID)));
-            this.FindAndSendKeys(expectedRating, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_RATING_INPUT_ID)));
-            this.FindAndSendKeys(expectedPagesCount, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PAGESCOUNT_INPUT_ID)));
+            page.OpenCreatingBookModal();
 
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_AUTHORS_INPUT_UL))).Click();
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_AUTHORS_INPUT_DROPDOWN))).Click();
+            page.PopulateCreatingBookModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
 
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
+            page.SubmitCreatingBookModal();
 
-            string actulaTitle = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_TITLE)).Text;
-            string actulaDate = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_PUBLICATIONDATE)).Text;
-            string actulaRating = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_RATING)).Text;
-            string actulaPagesCount = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_PAGESCOUNT)).Text;
+            string actulaTitle = page.FindLastRecordTitle();
+            string actulaDate = page.FindLastRecordDate();
+            string actulaRating = page.FindLastRecordRating();
+            string actulaPagesCount = page.FindLastRecordPagesCount();
 
             Assert.AreEqual(expectedTitle, actulaTitle);
             Assert.AreEqual(expectedDate, actulaDate);
@@ -52,21 +47,20 @@ namespace BookCatalogTestProject.Autotests
             string expectedRating = "5";
             string expectedPagesCount = "50";
 
-            this.NavigateTo(_url);
+            BookPage page = new BookPage(Browser);
 
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_LAST_RECORD_EDIT_BTN))).Click();
+            page.OpenBookPage();
 
-            this.FindAndSendKeys(expectedTitle, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_TITLE_INPUT_ID)));
-            this.FindAndSendKeys(expectedDate, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PUBLICATIONDATE_INPUT_ID)));
-            this.FindAndSendKeys(expectedRating, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_RATING_INPUT_ID)));
-            this.FindAndSendKeys(expectedPagesCount, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PAGESCOUNT_INPUT_ID)));
+            page.OpenEditingBookModal();
 
-            this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
+            page.PopulateEditingBookModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
 
-            string actulaTitle = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_TITLE)).Text;
-            string actulaDate = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_PUBLICATIONDATE)).Text;
-            string actulaRating = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_RATING)).Text;
-            string actulaPagesCount = this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_PAGESCOUNT)).Text;
+            page.SubmitEditingBookModal();
+
+            string actulaTitle = page.FindLastRecordTitle();
+            string actulaDate = page.FindLastRecordDate();
+            string actulaRating = page.FindLastRecordRating();
+            string actulaPagesCount = page.FindLastRecordPagesCount();
 
             Assert.AreEqual(expectedTitle, actulaTitle);
             Assert.AreEqual(expectedDate, actulaDate);

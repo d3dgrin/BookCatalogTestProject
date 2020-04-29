@@ -64,11 +64,15 @@
     <Compile Include="BookTests.cs" />
     <Compile Include="Helpers\AuthorConstants.cs" />
     <Compile Include="Helpers\BookConstants.cs" />
+    <Compile Include="Pages\AuthorPage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\BookPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
