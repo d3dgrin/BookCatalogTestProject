@@ -17,15 +17,15 @@ namespace BookCatalogTestProject.Autotests.Pages
         {
         }
 
-        public void OpenBookPage()
+        public void Open()
         {
             this.NavigateTo(_url);
         }
 
-        public void OpenCreatingBookModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_BTN))).Click();
-        public void OpenEditingBookModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_LAST_RECORD_EDIT_BTN))).Click();
+        public void OpenCreatingModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_BTN))).Click();
+        public void OpenEditingModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_LAST_RECORD_EDIT_BTN))).Click();
 
-        public void PopulateCreatingBookModal(string title, string date, string rating, string pagesCount)
+        public void PopulateCreatingModal(string title, string date, string rating, string pagesCount)
         {
             this.FindAndSendKeys(title, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_TITLE_INPUT_ID)));
             this.FindAndSendKeys(date, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PUBLICATIONDATE_INPUT_ID)));
@@ -35,7 +35,7 @@ namespace BookCatalogTestProject.Autotests.Pages
             this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_ADD_AUTHORS_INPUT_DROPDOWN))).Click();
         }
 
-        public void PopulateEditingBookModal(string title, string date, string rating, string pagesCount)
+        public void PopulateEditingModal(string title, string date, string rating, string pagesCount)
         {
             this.FindAndSendKeys(title, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_TITLE_INPUT_ID)));
             this.FindAndSendKeys(date, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PUBLICATIONDATE_INPUT_ID)));
@@ -43,8 +43,8 @@ namespace BookCatalogTestProject.Autotests.Pages
             this.FindAndSendKeys(pagesCount, ExpectedConditions.ElementIsVisible(By.Id(BookConstants.BOOK_ADD_PAGESCOUNT_INPUT_ID)));
         }
 
-        public void SubmitCreatingBookModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
-        public void SubmitEditingBookModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
+        public void SubmitCreatingModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
+        public void SubmitEditingModal() => this.FindElement(ExpectedConditions.ElementIsVisible(By.XPath(BookConstants.BOOK_SAVE_BTN))).Click();
         public string FindLastRecordTitle() => this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_TITLE)).Text;
         public string FindLastRecordDate() => this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_PUBLICATIONDATE)).Text;
         public string FindLastRecordRating() => this.FindElement(By.XPath(BookConstants.BOOK_LAST_RECORD_RATING)).Text;

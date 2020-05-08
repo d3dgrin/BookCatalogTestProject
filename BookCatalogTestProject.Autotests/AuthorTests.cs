@@ -19,13 +19,13 @@ namespace BookCatalogTestProject.Autotests
 
             AuthorPage page = new AuthorPage(Browser);
 
-            page.OpenAuthorPage();
+            page.Open();
 
-            page.OpenCreatingAuthorModal();
+            page.OpenCreatingModal();
 
-            page.PopulateCreatingAuthorModal(expectedName, expectedSurname);
+            page.PopulateCreatingModal(expectedName, expectedSurname);
 
-            page.SubmitCreatingAuthorModal();
+            page.SubmitCreatingModal();
 
             string actulaName = page.FindLastRecordName();
             string actulaSurname = page.FindLastRecordSurname();
@@ -42,13 +42,13 @@ namespace BookCatalogTestProject.Autotests
 
             AuthorPage page = new AuthorPage(Browser);
 
-            page.OpenAuthorPage();
+            page.Open();
 
-            page.OpenEditingAuthorModal();
+            page.OpenEditingModal();
 
-            page.PopulateEditingAuthorModal(expectedName, expectedSurname);
+            page.PopulateEditingModal(expectedName, expectedSurname);
 
-            page.SubmitEditingAuthorModal();
+            page.SubmitEditingModal();
 
             string actulaName = page.FindLastRecordName();
             string actulaSurname = page.FindLastRecordSurname();

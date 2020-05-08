@@ -20,13 +20,13 @@ namespace BookCatalogTestProject.Autotests
 
             BookPage page = new BookPage(Browser);
 
-            page.OpenBookPage();
+            page.Open();
 
-            page.OpenCreatingBookModal();
+            page.OpenCreatingModal();
 
-            page.PopulateCreatingBookModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
+            page.PopulateCreatingModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
 
-            page.SubmitCreatingBookModal();
+            page.SubmitCreatingModal();
 
             string actulaTitle = page.FindLastRecordTitle();
             string actulaDate = page.FindLastRecordDate();
@@ -49,13 +49,13 @@ namespace BookCatalogTestProject.Autotests
 
             BookPage page = new BookPage(Browser);
 
-            page.OpenBookPage();
+            page.Open();
 
-            page.OpenEditingBookModal();
+            page.OpenEditingModal();
 
-            page.PopulateEditingBookModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
+            page.PopulateEditingModal(expectedTitle, expectedDate, expectedRating, expectedPagesCount);
 
-            page.SubmitEditingBookModal();
+            page.SubmitEditingModal();
 
             string actulaTitle = page.FindLastRecordTitle();
             string actulaDate = page.FindLastRecordDate();
